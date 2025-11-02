@@ -29,10 +29,10 @@
                 <li><a href="#fragrance">Fragrance</a></li>
                 <li><a href="#haircare">Haircare</a></li>
                 <li class="nav-cart">
-                    <button id="cartBtn" aria-label="Open cart" class="cart-button">
+                    <a href="cart.html" id="cartBtn" aria-label="View cart" class="cart-button">
                         <i class="fas fa-shopping-cart"></i>
                         <span id="cartCount" class="cart-count">0</span>
-                    </button>
+                    </a>
                 </li>
             </ul>
         </nav>
@@ -761,27 +761,8 @@
                 deactivateFocusTrap();
             };
 
-            // Override cart button to open page on desktop, drawer on mobile
-            if (cartBtn) {
-                cartBtn.removeEventListener && cartBtn.removeEventListener('click', null);
-                cartBtn.addEventListener('click', () => {
-                        if (window.innerWidth > 900) {
-                            openCartPage();
-                        } else {
-                        // fallback to drawer on small screens
-                        const isOpen = cartDrawer.classList.toggle('open');
-                        if (isOpen) {
-                            cartOverlay.classList.add('open');
-                            cartOverlay.setAttribute('aria-hidden', 'false');
-                        } else {
-                            cartOverlay.classList.remove('open');
-                            cartOverlay.setAttribute('aria-hidden', 'true');
-                        }
-                        cartDrawer.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
-                        renderCart();
-                    }
-                });
-            }
+            // Note: the main nav cart is now a link to the standalone cart page (cart.html).
+            // The mobile cart button still opens the drawer for small screens (mobile behavior retained).
 
             function computeSummary() {
                 const subtotal = cart.items.reduce((s, it) => s + it.price * it.qty, 0);

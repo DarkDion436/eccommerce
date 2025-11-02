@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Your Cart — Bella Beauty</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="products.css">
+    <style>
+        /* Small adjustments specific to the standalone cart page */
+        body { background: var(--bg, #fff); }
+        .page-header { display:flex;align-items:center;justify-content:space-between;padding:1rem 1.25rem;border-bottom:1px solid rgba(0,0,0,0.06); }
+        .cart-main { max-width:1100px;margin:2rem auto;display:grid;grid-template-columns:1fr 360px;gap:24px;padding:0 16px; }
+        @media (max-width:900px){ .cart-main { grid-template-columns: 1fr; padding:0 12px } }
+        .cart-items-list .empty { padding:32px;text-align:center;color:#666 }
+        .cart-page-item { display:flex;align-items:center;gap:12px;padding:14px;border-bottom:1px dashed rgba(0,0,0,0.06) }
+        .cart-page-item img { width:78px;height:78px;object-fit:cover;border-radius:6px }
+        .cart-item-details { flex:1 }
+        .cart-item-details .cart-item-title { font-weight:600 }
+        .qty-control input { width:64px }
+        .summary-panel { background:var(--color-panel,#f7efe8);padding:18px;border-radius:8px }
+        .summary-row{display:flex;justify-content:space-between;padding:6px 0}
+    </style>
+</head>
+<body>
+    <header class="page-header">
+        <a href="products.html" class="logo">Bella Beauty</a>
+        <nav>
+            <a href="products.html" class="btn btn-outline">Continue shopping</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="cart-main">
+            <section class="cart-items-list">
+                <h2>Your Cart</h2>
+                <div id="cartPageItems" class="cart-page-items">
+                    <!-- items will render here -->
+                </div>
+                <div style="margin-top:12px;display:flex;gap:8px;">
+                    <button id="clearCartBtn" class="btn btn-secondary">Clear Cart</button>
+                </div>
+            </section>
+
+            <aside class="summary-panel">
+                <h3>Order Summary</h3>
+                <div class="summary-row"><span>Subtotal</span><span id="summarySubtotal">$0.00</span></div>
+                <div style="margin:8px 0;">
+                    <input id="couponInput" type="text" placeholder="Coupon code" aria-label="Coupon code" style="width:100%;padding:8px;margin-bottom:8px;">
+                    <button id="applyCoupon" class="btn btn-secondary" style="width:100%">Apply</button>
+                </div>
+                <div style="margin:8px 0;">
+                    <select id="shippingCountry" aria-label="Country" style="width:100%;padding:8px;margin-bottom:8px;">
+                        <option value="KE">Kenya</option>
+                        <option value="UG">Uganda</option>
+                        <option value="TZ">Tanzania</option>
+                        <option value="OTHER">Other</option>
+                    </select>
+                    <input id="shippingZip" type="text" placeholder="Postal / ZIP" aria-label="Postal code" style="width:100%;padding:8px;margin-bottom:8px;">
+                    <button id="estimateShipping" class="btn btn-secondary" style="width:100%">Estimate</button>
+                </div>
+                <div class="summary-row"><span>Shipping</span><span id="summaryShipping">$0.00</span></div>
+                <div class="summary-row"><span>Tax</span><span id="summaryTax">$0.00</span></div>
+                <div class="summary-row total-row" style="margin-top:12px;font-size:1.1rem;"><strong>Total</strong><strong id="summaryTotal">$0.00</strong></div>
+                <button id="proceedCheckout" class="btn" style="width:100%;margin-top:12px;">Proceed to Checkout</button>
+            </aside>
+        </div>
+    </main>
+
+    <footer style="text-align:center;padding:32px 12px;color:#777">&copy; 2025 Bella Beauty</footer>
+
+    <script>
+        // Use same storage key as site
+        const CART_KEY = 'bella_cart_v1';
+        let cart = loadCart();
+        let appliedCoupon = null;
+
+        // DOM refs
+        const cartPageItemsEl = document.getElementById('cartPageItems');
+        const summarySubtotalEl = document.getElementById('summarySubtotal');
+        const summaryShippingEl = document.getElementById('summaryShipping');
+        const summaryTaxEl = document.getElementById('summaryTax');
+        const summaryTotalEl = document.getElementById('summaryTotal');
+        const couponInput = document.getElementById('couponInput');
+        const applyCouponBtn = document.getElementById('applyCoupon');
+        const estimateShippingBtn = document.getElementById('estimateShipping');
+        const shippingCountry = document.getElementById('shippingCountry');
+        const shippingZip = document.getElementById('shippingZip');
+        const proceedCheckoutBtn = document.getElementById('proceedCheckout');
+        const clearCartBtn = document.getElementById('clearCartBtn');
+
+        renderCartPage();
+
+        function loadCart(){ try{ const raw = localStorage.getItem(CART_KEY); return raw ? JSON.parse(raw) : { items: [] }; }catch(e){return { items: [] }; } }
+        function saveCart(){ localStorage.setItem(CART_KEY, JSON.stringify(cart)); }
+        function formatCurrency(n){ return '$' + Number(n || 0).toFixed(2); }
+        function escapeHtml(str){ return (str||'').replace(/[&<>"']/g, function(ch){ return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[ch]; }); }
+
+        function computeSummary(){
+            const subtotal = cart.items.reduce((s,it)=>s+it.price*it.qty,0);
+            const country = shippingCountry ? shippingCountry.value : 'KE';
+            let shipping = 0;
+            if (subtotal === 0) shipping = 0;
+            else if (country === 'KE') shipping = 3.99;
+            else if (country === 'UG' || country === 'TZ') shipping = 9.99;
+            else shipping = 19.99;
+            const tax = +(subtotal * 0.16).toFixed(2);
+            const code = appliedCoupon || (couponInput ? couponInput.value.trim().toUpperCase() : '');
+            let discount = 0;
+            if (code === 'BELLA10') discount = +(subtotal * 0.10).toFixed(2);
+            const total = +(subtotal + shipping + tax - discount).toFixed(2);
+            return { subtotal:+subtotal.toFixed(2), shipping, tax, discount, total };
+        }
+
+        function renderOrderSummary(){
+            const s = computeSummary();
+            if (summarySubtotalEl) summarySubtotalEl.innerText = formatCurrency(s.subtotal);
+            if (summaryShippingEl) summaryShippingEl.innerText = formatCurrency(s.shipping);
+            if (summaryTaxEl) summaryTaxEl.innerText = formatCurrency(s.tax);
+            if (summaryTotalEl) summaryTotalEl.innerText = formatCurrency(s.total);
+        }
+
+        function renderCartPage(){
+            cart = loadCart();
+            if (!cart.items || !cart.items.length){
+                cartPageItemsEl.innerHTML = '<div class="empty">Your cart is empty.</div>';
+                renderOrderSummary();
+                return;
+            }
+            cartPageItemsEl.innerHTML = '';
+            cart.items.forEach(item=>{
+                const el = document.createElement('div');
+                el.className = 'cart-page-item';
+                el.innerHTML = `\n                    <img src="${item.img}" alt="${escapeHtml(item.title)}">\n                    <div class="cart-item-details">\n                        <div class="cart-item-title">${escapeHtml(item.title)}</div>\n                        <div class="cart-item-meta">${formatCurrency(item.price)}</div>\n                    </div>\n                    <div class="cart-item-controls">\n                        <div class="qty-control">\n                            <input class="cart-qty" type="number" min="1" data-id="${item.id}" value="${item.qty}">\n                        </div>\n                        <button class="cart-remove-plain btn btn-secondary" data-id="${item.id}">Remove</button>\n                    </div>\n                `;
+                cartPageItemsEl.appendChild(el);
+            });
+            renderOrderSummary();
+        }
+
+        // event delegation for remove / qty
+        cartPageItemsEl.addEventListener('click', (e)=>{
+            const rem = e.target.closest('.cart-remove-plain');
+            if (rem){ const id = rem.dataset.id; removeFromCart(id); renderCartPage(); }
+        });
+        cartPageItemsEl.addEventListener('input', (e)=>{
+            if (e.target.classList.contains('cart-qty')){
+                const id = e.target.dataset.id; const qty = parseInt(e.target.value) || 1; updateQty(id,qty); renderOrderSummary();
+            }
+        });
+
+        function addToCart(product){ cart.items = cart.items || []; const existing = cart.items.find(i=>i.id===product.id); if (existing) existing.qty+=1; else cart.items.push({ ...product, qty:1 }); saveCart(); }
+        function removeFromCart(id){ cart.items = cart.items.filter(i=>i.id!==id); saveCart(); renderCartPage(); }
+        function updateQty(id, qty){ const it = cart.items.find(i=>i.id===id); if (!it) return; it.qty = Math.max(1, qty); saveCart(); renderCartPage(); }
+
+        if (applyCouponBtn) applyCouponBtn.addEventListener('click', ()=>{
+            const code = couponInput.value.trim().toUpperCase();
+            if (!code) return alert('Enter a coupon code');
+            if (code === 'BELLA10') { appliedCoupon = code; alert('Coupon applied: 10% off'); }
+            else { appliedCoupon = null; alert('Invalid coupon'); }
+            renderOrderSummary();
+        });
+
+        if (estimateShippingBtn) estimateShippingBtn.addEventListener('click', ()=>{ renderOrderSummary(); alert('Shipping estimated based on country selection (demo).'); });
+
+        if (proceedCheckoutBtn) proceedCheckoutBtn.addEventListener('click', ()=>{
+            if (!cart.items.length) { alert('Your cart is empty.'); return; }
+            alert('Proceeding to checkout (demo).');
+            cart = { items: [] }; saveCart(); renderCartPage();
+        });
+
+        if (clearCartBtn) clearCartBtn.addEventListener('click', ()=>{
+            if (!cart.items.length) return; if (!confirm('Clear all items from cart?')) return; cart = { items: [] }; saveCart(); renderCartPage();
+        });
+
+        // helpers
+        function parsePrice(text){ const n = (text||'').replace(/[^0-9.-]+/g,''); return parseFloat(n)||0; }
+
+    </script>
+</body>
+</html>
