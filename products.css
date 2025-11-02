@@ -505,13 +505,28 @@ img { max-width: 100%; display: block; }
     .main-header {
         flex-direction: column;
         padding: 1rem;
+        /* leave space on the left for the absolute-positioned hamburger */
+        padding-left: 64px;
     }
     .main-nav {
         margin-top: 1rem;
     }
     /* Hide desktop nav menu and show mobile button */
     .main-nav ul { display: none; }
-    .mobile-menu-btn { display: inline-block; margin-left: 0.5rem; }
+    /* position hamburger at top-left inside the header */
+    .mobile-menu-btn {
+        display: inline-block;
+        position: absolute;
+        left: 12px;
+        top: 12px;
+        z-index: 350;
+        background: transparent;
+        border: none;
+        font-size: 1.35rem;
+        color: var(--color-dark);
+        cursor: pointer;
+        padding: 8px;
+    }
 
     .main-nav li { margin: 0.5rem 1rem; }
 
