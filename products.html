@@ -101,7 +101,10 @@
 
         <!-- Products Slider -->
         <section id="products" class="container">
-            <h2>Bestselling Products</h2>
+            <div class="section-header">
+                <h2>Bestselling Products</h2>
+                
+            </div>
             <div class="products-wrapper">
                 <button class="scroll-btn scroll-left" aria-label="Scroll left">
                     <i class="fas fa-chevron-left"></i>
@@ -242,6 +245,7 @@
                     <i class="fas fa-chevron-right"></i>
                 </button>
             </div>
+            <a href="#products" class="btn btn-outline">Our Products</a>
         </section>
 
         <!-- Beauty Philosophy Section -->
@@ -253,24 +257,101 @@
             </div>
         </section>
 
+        <!-- Cart Page (MyDawa-style) -->
+        <div id="cartPageOverlay" class="cart-page-overlay" aria-hidden="true"></div>
+        <section id="cartPage" class="cart-page" aria-hidden="true">
+            <div class="cart-panel container" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
+                <button id="cartPageClose" class="cart-page-close" aria-label="Close cart">&times;</button>
+                <h2 id="cartTitle">Your Cart</h2>
+                <div class="cart-layout">
+                <div class="cart-items-column">
+                    <div id="cartPageItems" class="cart-page-items">
+                        <!-- items will be rendered here -->
+                    </div>
+                    <div class="cart-actions-row">
+                        <button id="continueShopping" class="btn">Continue Shopping</button>
+                        <button id="clearCartBtn" class="btn btn-secondary">Clear Cart</button>
+                    </div>
+                </div>
+                <aside class="order-summary" id="orderSummary">
+                    <h3>Order Summary</h3>
+                    <div class="summary-row"><span>Subtotal</span><span id="summarySubtotal">$0.00</span></div>
+                    <div class="summary-row coupon-row">
+                        <input id="couponInput" type="text" placeholder="Coupon code" aria-label="Coupon code">
+                        <button id="applyCoupon" class="btn btn-secondary">Apply</button>
+                    </div>
+                    <div class="summary-row shipping-row">
+                        <select id="shippingCountry" aria-label="Country">
+                            <option value="KE">Kenya</option>
+                            <option value="UG">Uganda</option>
+                            <option value="TZ">Tanzania</option>
+                            <option value="OTHER">Other</option>
+                        </select>
+                        <input id="shippingZip" type="text" placeholder="Postal / ZIP" aria-label="Postal code">
+                        <button id="estimateShipping" class="btn btn-secondary">Estimate</button>
+                    </div>
+                    <div class="summary-row"><span>Shipping</span><span id="summaryShipping">$0.00</span></div>
+                    <div class="summary-row"><span>Tax</span><span id="summaryTax">$0.00</span></div>
+                    <div class="summary-row total-row"><strong>Total</strong><strong id="summaryTotal">$0.00</strong></div>
+                    <button id="proceedCheckout" class="btn">Proceed to Checkout</button>
+                </aside>
+            </div>
+        </section>
+
         <!-- Reviews Section -->
         <section class="reviews container">
             <h2>Beauty Stories</h2>
-            <div class="review-cards">
-                <div class="review-card">
-                    <blockquote>"The Vitamin C Serum has completely transformed my skin. My complexion is brighter and more radiant than ever!"</blockquote>
-                    <p class="reviewer-name">— Emma S.</p>
-                    <div class="review-rating">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+            <div class="reviews-wrapper">
+                <button class="review-scroll-btn review-left" aria-label="Scroll reviews left">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <div class="review-cards">
+                    <div class="review-card">
+                        <blockquote>"The Vitamin C Serum has completely transformed my skin. My complexion is brighter and more radiant than ever!"</blockquote>
+                        <p class="reviewer-name">— Emma S.</p>
+                        <div class="review-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <div class="review-card">
+                        <blockquote>"The Rose Garden perfume is divine! I receive compliments every time I wear it. Simply luxurious!"</blockquote>
+                        <p class="reviewer-name">— Sophie M.</p>
+                        <div class="review-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <div class="review-card">
+                        <blockquote>"I've struggled with dry hands for years — the Luxury Hand Cream fixed that in days. The texture and scent are perfect."</blockquote>
+                        <p class="reviewer-name">— Olivia R.</p>
+                        <div class="review-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                    <div class="review-card">
+                        <blockquote>"Silk Finish Foundation blends flawlessly and lasts all day — no touch-ups required. My go-to product now."</blockquote>
+                        <p class="reviewer-name">— Maya L.</p>
+                        <div class="review-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                    <div class="review-card">
+                        <blockquote>"The Golden Elixir Facial Oil is a nightly ritual I can't live without. My skin feels plumper and more nourished."</blockquote>
+                        <p class="reviewer-name">— Harper T.</p>
+                        <div class="review-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <div class="review-card">
+                        <blockquote>"Quick shipping and beautiful packaging — the samples were a delightful surprise. Customer service was very helpful."</blockquote>
+                        <p class="reviewer-name">— Lucas G.</p>
+                        <div class="review-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        </div>
                     </div>
                 </div>
-                <div class="review-card">
-                    <blockquote>"The Rose Garden perfume is divine! I receive compliments every time I wear it. Simply luxurious!"</blockquote>
-                    <p class="reviewer-name">— Sophie M.</p>
-                    <div class="review-rating">
-                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                    </div>
-                </div>
+                <button class="review-scroll-btn review-right" aria-label="Scroll reviews right">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
             </div>
         </section>
 
@@ -344,6 +425,27 @@
                 rightBtn.style.opacity = slider.scrollLeft < (slider.scrollWidth - slider.clientWidth) ? '1' : '0.5';
             });
             leftBtn.style.opacity = '0.5';
+
+            /* Reviews carousel controls */
+            const reviewSlider = document.querySelector('.review-cards');
+            const reviewLeftBtn = document.querySelector('.review-left');
+            const reviewRightBtn = document.querySelector('.review-right');
+            const reviewScrollAmount = 420;
+
+            if (reviewLeftBtn && reviewRightBtn && reviewSlider) {
+                reviewLeftBtn.addEventListener('click', () => {
+                    reviewSlider.scrollBy({ left: -reviewScrollAmount, behavior: 'smooth' });
+                });
+                reviewRightBtn.addEventListener('click', () => {
+                    reviewSlider.scrollBy({ left: reviewScrollAmount, behavior: 'smooth' });
+                });
+
+                reviewSlider.addEventListener('scroll', () => {
+                    reviewLeftBtn.style.opacity = reviewSlider.scrollLeft > 0 ? '1' : '0.5';
+                    reviewRightBtn.style.opacity = reviewSlider.scrollLeft < (reviewSlider.scrollWidth - reviewSlider.clientWidth) ? '1' : '0.5';
+                });
+                reviewLeftBtn.style.opacity = '0.5';
+            }
 
             /* Cart functionality */
             const CART_KEY = 'bella_cart_v1';
@@ -541,6 +643,279 @@
                     return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[ch];
                 });
             }
+
+            /* --- Cart page rendering & order summary logic --- */
+            const cartPageEl = document.getElementById('cartPage');
+            const cartPageItemsEl = document.getElementById('cartPageItems');
+            const summarySubtotalEl = document.getElementById('summarySubtotal');
+            const summaryShippingEl = document.getElementById('summaryShipping');
+            const summaryTaxEl = document.getElementById('summaryTax');
+            const summaryTotalEl = document.getElementById('summaryTotal');
+            const couponInput = document.getElementById('couponInput');
+            const applyCouponBtn = document.getElementById('applyCoupon');
+            const estimateShippingBtn = document.getElementById('estimateShipping');
+            const shippingCountry = document.getElementById('shippingCountry');
+            const shippingZip = document.getElementById('shippingZip');
+            const proceedCheckoutBtn = document.getElementById('proceedCheckout');
+            const clearCartBtn = document.getElementById('clearCartBtn');
+            const continueShoppingBtn = document.getElementById('continueShopping');
+
+            let appliedCoupon = null;
+            const cartPageOverlay = document.getElementById('cartPageOverlay');
+            const cartPageClose = document.getElementById('cartPageClose');
+
+            function openCartPage() {
+                if (cartPageEl) {
+                    cartPageEl.classList.add('open');
+                    cartPageOverlay.classList.add('open');
+                    cartPageEl.setAttribute('aria-hidden', 'false');
+                    cartPageOverlay.setAttribute('aria-hidden', 'false');
+                    renderCartPage();
+                }
+            }
+
+            function closeCartPage() {
+                if (cartPageEl) {
+                    cartPageEl.classList.remove('open');
+                    cartPageOverlay.classList.remove('open');
+                    cartPageEl.setAttribute('aria-hidden', 'true');
+                    cartPageOverlay.setAttribute('aria-hidden', 'true');
+                }
+            }
+
+            /* Focus trap for cart modal */
+            let _previousActiveElement = null;
+            let _focusTrapHandler = null;
+
+            function getFocusableElements(container) {
+                if (!container) return [];
+                const selectors = 'a[href], area[href], input:not([disabled]):not([type="hidden"]), select:not([disabled]), textarea:not([disabled]), button:not([disabled]), iframe, [tabindex]:not([tabindex="-1"]), [contenteditable]';
+                return Array.from(container.querySelectorAll(selectors)).filter(el => el.offsetWidth > 0 || el.offsetHeight > 0 || el === document.activeElement);
+            }
+
+            function activateFocusTrap(container) {
+                if (!container) return;
+                _previousActiveElement = document.activeElement;
+                const focusable = getFocusableElements(container);
+                const first = focusable[0] || container;
+                const last = focusable[focusable.length - 1] || container;
+                first.focus();
+
+                _focusTrapHandler = function(e) {
+                    if (e.key === 'Tab') {
+                        if (focusable.length === 0) {
+                            e.preventDefault();
+                            return;
+                        }
+                        if (e.shiftKey) {
+                            if (document.activeElement === first) {
+                                e.preventDefault();
+                                last.focus();
+                            }
+                        } else {
+                            if (document.activeElement === last) {
+                                e.preventDefault();
+                                first.focus();
+                            }
+                        }
+                    }
+                };
+
+                document.addEventListener('keydown', _focusTrapHandler);
+            }
+
+            function deactivateFocusTrap() {
+                if (_focusTrapHandler) {
+                    document.removeEventListener('keydown', _focusTrapHandler);
+                    _focusTrapHandler = null;
+                }
+                if (_previousActiveElement && typeof _previousActiveElement.focus === 'function') {
+                    _previousActiveElement.focus();
+                }
+                _previousActiveElement = null;
+            }
+
+            // Integrate focus trap with open/close
+            const _origOpenCartPage = openCartPage;
+            openCartPage = function() {
+                _origOpenCartPage();
+                // wait a tick for DOM and animation then trap
+                requestAnimationFrame(() => {
+                    const panel = document.querySelector('.cart-panel');
+                    activateFocusTrap(panel);
+                });
+            };
+
+            const _origCloseCartPage = closeCartPage;
+            closeCartPage = function() {
+                _origCloseCartPage();
+                deactivateFocusTrap();
+            };
+
+            // Override cart button to open page on desktop, drawer on mobile
+            if (cartBtn) {
+                cartBtn.removeEventListener && cartBtn.removeEventListener('click', null);
+                cartBtn.addEventListener('click', () => {
+                        if (window.innerWidth > 900) {
+                            openCartPage();
+                        } else {
+                        // fallback to drawer on small screens
+                        const isOpen = cartDrawer.classList.toggle('open');
+                        if (isOpen) {
+                            cartOverlay.classList.add('open');
+                            cartOverlay.setAttribute('aria-hidden', 'false');
+                        } else {
+                            cartOverlay.classList.remove('open');
+                            cartOverlay.setAttribute('aria-hidden', 'true');
+                        }
+                        cartDrawer.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
+                        renderCart();
+                    }
+                });
+            }
+
+            function computeSummary() {
+                const subtotal = cart.items.reduce((s, it) => s + it.price * it.qty, 0);
+                // shipping logic (simple): Kenya flat 3.99, others 12.99
+                const country = shippingCountry ? shippingCountry.value : 'KE';
+                let shipping = 0;
+                if (subtotal === 0) shipping = 0;
+                else if (country === 'KE') shipping = 3.99;
+                else if (country === 'UG' || country === 'TZ') shipping = 9.99;
+                else shipping = 19.99;
+                // taxes: 16% of subtotal
+                const tax = +(subtotal * 0.16).toFixed(2);
+                // coupon handling
+                let discount = 0;
+                if (appliedCoupon === 'BELLA10') discount = +(subtotal * 0.10).toFixed(2);
+                const total = +(subtotal + shipping + tax - discount).toFixed(2);
+                return { subtotal: +subtotal.toFixed(2), shipping, tax, discount, total };
+            }
+
+            function renderOrderSummary() {
+                const s = computeSummary();
+                if (summarySubtotalEl) summarySubtotalEl.innerText = formatCurrency(s.subtotal);
+                if (summaryShippingEl) summaryShippingEl.innerText = formatCurrency(s.shipping);
+                if (summaryTaxEl) summaryTaxEl.innerText = formatCurrency(s.tax);
+                if (summaryTotalEl) summaryTotalEl.innerText = formatCurrency(s.total);
+            }
+
+            function renderCartPage() {
+                if (!cartPageItemsEl) return;
+                cartPageItemsEl.innerHTML = '';
+                if (!cart.items.length) {
+                    cartPageItemsEl.innerHTML = '<div class="empty">Your cart is empty.</div>';
+                    renderOrderSummary();
+                    return;
+                }
+                cart.items.forEach(item => {
+                    const el = document.createElement('div');
+                    el.className = 'cart-page-item';
+                    el.innerHTML = `
+                        <img src="${item.img}" alt="${escapeHtml(item.title)}">
+                        <div class="cart-item-details">
+                            <div class="cart-item-title">${escapeHtml(item.title)}</div>
+                            <div class="cart-item-meta">${formatCurrency(item.price)}</div>
+                        </div>
+                        <div class="cart-item-controls">
+                            <div class="qty-control">
+                                <input class="cart-qty" type="number" min="1" data-id="${item.id}" value="${item.qty}">
+                            </div>
+                            <button class="cart-remove-plain" data-id="${item.id}">Remove</button>
+                        </div>
+                    `;
+                    cartPageItemsEl.appendChild(el);
+                });
+                renderOrderSummary();
+            }
+
+            // Sync behavior: when cart updates, update page and drawer
+            const _origSaveCart = saveCart;
+            saveCart = function() { _origSaveCart(); renderCartPage(); };
+
+            // Delegate events in cart page (remove, qty)
+            if (cartPageItemsEl) {
+                cartPageItemsEl.addEventListener('click', (e) => {
+                    const rem = e.target.closest('.cart-remove-plain');
+                    if (rem) {
+                        const id = rem.dataset.id;
+                        removeFromCart(id);
+                        renderCartPage();
+                    }
+                });
+                cartPageItemsEl.addEventListener('input', (e) => {
+                    if (e.target.classList.contains('cart-qty')) {
+                        const id = e.target.dataset.id;
+                        const qty = parseInt(e.target.value) || 1;
+                        updateQty(id, qty);
+                        renderOrderSummary();
+                    }
+                });
+            }
+
+            // overlay and close handlers for cart page
+            if (cartPageOverlay) cartPageOverlay.addEventListener('click', closeCartPage);
+            if (cartPageClose) cartPageClose.addEventListener('click', closeCartPage);
+
+            if (applyCouponBtn) {
+                applyCouponBtn.addEventListener('click', () => {
+                    const code = couponInput.value.trim().toUpperCase();
+                    if (!code) return alert('Enter a coupon code');
+                    if (code === 'BELLA10') {
+                        appliedCoupon = code;
+                        alert('Coupon applied: 10% off');
+                    } else {
+                        appliedCoupon = null;
+                        alert('Invalid coupon');
+                    }
+                    renderOrderSummary();
+                });
+            }
+
+            if (estimateShippingBtn) {
+                estimateShippingBtn.addEventListener('click', () => {
+                    // simply re-render order summary which reads country/select
+                    renderOrderSummary();
+                    alert('Shipping estimated based on country selection (demo).');
+                });
+            }
+
+            if (proceedCheckoutBtn) {
+                proceedCheckoutBtn.addEventListener('click', () => {
+                    if (!cart.items.length) { alert('Your cart is empty.'); return; }
+                    alert('Proceeding to checkout (demo).');
+                    // clear cart for demo
+                    cart = { items: [] };
+                    saveCart();
+                    renderCart(); renderCartPage(); renderCartCount();
+                });
+            }
+
+            if (clearCartBtn) {
+                clearCartBtn.addEventListener('click', () => {
+                    if (!cart.items.length) return;
+                    if (!confirm('Clear all items from cart?')) return;
+                    cart = { items: [] };
+                    saveCart();
+                    renderCart(); renderCartPage(); renderCartCount();
+                });
+            }
+
+            if (continueShoppingBtn) {
+                continueShoppingBtn.addEventListener('click', () => {
+                    // close the cart modal then scroll to products section
+                    closeCartPage();
+                    const productsSection = document.getElementById('products');
+                    if (productsSection) productsSection.scrollIntoView({ behavior: 'smooth' });
+                });
+            }
+
+            // close cart page on Escape
+            document.addEventListener('keydown', (ev) => {
+                if (ev.key === 'Escape' && cartPageEl && cartPageEl.classList.contains('open')) {
+                    closeCartPage();
+                }
+            });
 
             /* Mobile navigation handlers */
             const mobileMenuBtn = document.getElementById('mobileMenuBtn');
