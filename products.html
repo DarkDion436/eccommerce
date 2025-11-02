@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bella Beauty - Discover Your Natural Radiance</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="products.css">
+</head>
+<body>
+    <header class="main-header">
+        <a href="#" class="logo">Bella Beauty</a>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="#skincare">Skincare</a></li>
+                <li><a href="#makeup">Makeup</a></li>
+                <li><a href="#fragrance">Fragrance</a></li>
+                <li><a href="#haircare">Haircare</a></li>
+                <li class="nav-cart">
+                    <button id="cartBtn" aria-label="Open cart" class="cart-button">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span id="cartCount" class="cart-count">0</span>
+                    </button>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+            <!-- Cart Drawer -->
+            <div id="cartDrawer" class="cart-drawer" aria-hidden="true">
+                <div class="cart-header">
+                    <h3>Your Cart</h3>
+                    <button id="closeCart" aria-label="Close cart" class="cart-close">&times;</button>
+                </div>
+                <div class="cart-body">
+                    <ul id="cartItems" class="cart-items">
+                        <!-- dynamically populated -->
+                    </ul>
+                </div>
+                <div class="cart-footer">
+                    <div class="cart-subtotal">Subtotal: <span id="cartSubtotal">$0.00</span></div>
+                    <div class="cart-actions">
+                        <button id="checkoutBtn" class="btn">Checkout</button>
+                    </div>
+                </div>
+            </div>
+            <!-- overlay sits behind the drawer to capture outside clicks -->
+            <div id="cartOverlay" class="cart-overlay" aria-hidden="true"></div>
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Discover Your Natural Radiance</h1>
+                <p>Indulge in our curated collection of premium beauty essentials. Let your authentic beauty shine through with our natural and effective products.</p>
+                <a href="#products" class="btn">Shop Collection</a>
+            </div>
+        </section>
+
+        <!-- Features Bar -->
+        <section class="features-bar">
+            <div class="features-content">
+                <div class="feature-item"><i class="fas fa-leaf"></i> Natural Ingredients</div>
+                <div class="feature-item"><i class="fas fa-heart"></i> Cruelty-Free</div>
+                <div class="feature-item"><i class="fas fa-truck-fast"></i> Free Shipping Over $50</div>
+                <div class="feature-item"><i class="fas fa-gift"></i> Luxury Samples</div>
+            </div>
+        </section>
+
+        <!-- Products Slider -->
+        <section id="products" class="container">
+            <h2>Bestselling Products</h2>
+            <div class="products-wrapper">
+                <button class="scroll-btn scroll-left" aria-label="Scroll left">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <div class="products-slider">
+                    <!-- Skincare -->
+                    <div class="product-card" id="skincare">
+                        <img src="https://images.unsplash.com/photo-1570554886111-e80b8c7d5b8d?q=80&w=1887&auto=format&fit=crop" alt="Vitamin C Serum">
+                        <div class="product-card-content">
+                            <h3>Radiance Vitamin C Serum</h3>
+                            <p>Brightening & Anti-aging serum with 20% Vitamin C</p>
+                            <div class="product-price">$68.00</div>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <a href="#" class="btn btn-secondary">Add to Cart</a>
+                        </div>
+                    </div>
+                    <!-- Makeup -->
+                    <div class="product-card" id="makeup">
+                        <img src="https://images.unsplash.com/photo-1631214540553-ff044a3ff1d4?q=80&w=1889&auto=format&fit=crop" alt="Luxury Foundation">
+                        <div class="product-card-content">
+                            <h3>Silk Finish Foundation</h3>
+                            <p>Weightless, natural coverage with hyaluronic acid</p>
+                            <div class="product-price">$45.00</div>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <a href="#" class="btn btn-secondary">Add to Cart</a>
+                        </div>
+                    </div>
+                    <!-- Fragrance -->
+                    <div class="product-card" id="fragrance">
+                        <img src="https://images.unsplash.com/photo-1592914610354-fd354ea45e48?q=80&w=1890&auto=format&fit=crop" alt="Luxury Perfume">
+                        <div class="product-card-content">
+                            <h3>Rose Garden Eau de Parfum</h3>
+                            <p>Elegant blend of rose, jasmine, and amber</p>
+                            <div class="product-price">$120.00</div>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <a href="#" class="btn btn-secondary">Add to Cart</a>
+                        </div>
+                    </div>
+                    <!-- Facial Oil -->
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?q=80&w=1887&auto=format&fit=crop" alt="Facial Oil">
+                        <div class="product-card-content">
+                            <h3>Golden Elixir Facial Oil</h3>
+                            <p>Luxurious blend of argan and jojoba oils</p>
+                            <div class="product-price">$82.00</div>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <a href="#" class="btn btn-secondary">Add to Cart</a>
+                        </div>
+                    </div>
+                    <!-- Face Mask -->
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1596755389378-c31d21fd1273?q=80&w=1887&auto=format&fit=crop" alt="Clay Mask">
+                        <div class="product-card-content">
+                            <h3>Purifying Clay Mask</h3>
+                            <p>Deep cleansing mask with kaolin clay</p>
+                            <div class="product-price">$38.00</div>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <a href="#" class="btn btn-secondary">Add to Cart</a>
+                        </div>
+                    </div>
+                    <!-- Lip Treatment -->
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1586495777744-4413f21062fa?q=80&w=1887&auto=format&fit=crop" alt="Lip Treatment">
+                        <div class="product-card-content">
+                            <h3>Nourishing Lip Treatment</h3>
+                            <p>Hydrating lip balm with shea butter</p>
+                            <div class="product-price">$24.00</div>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <a href="#" class="btn btn-secondary">Add to Cart</a>
+                        </div>
+                    </div>
+                    <!-- Eye Cream -->
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1617897903246-719242758050?q=80&w=1887&auto=format&fit=crop" alt="Eye Cream">
+                        <div class="product-card-content">
+                            <h3>Revitalizing Eye Cream</h3>
+                            <p>Brightening eye cream with caffeine</p>
+                            <div class="product-price">$56.00</div>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                            </div>
+                            <a href="#" class="btn btn-secondary">Add to Cart</a>
+                        </div>
+                    </div>
+                    <!-- Hair Oil -->
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1585232004423-244e0e6904e3?q=80&w=1887&auto=format&fit=crop" alt="Hair Oil">
+                        <div class="product-card-content">
+                            <h3>Luxe Hair Oil</h3>
+                            <p>Nourishing oil blend for silky smooth hair</p>
+                            <div class="product-price">$42.00</div>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <a href="#" class="btn btn-secondary">Add to Cart</a>
+                        </div>
+                    </div>
+                    <!-- Body Lotion -->
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?q=80&w=1887&auto=format&fit=crop" alt="Body Lotion">
+                        <div class="product-card-content">
+                            <h3>Hydrating Body Lotion</h3>
+                            <p>Rich moisturizer with coconut oil</p>
+                            <div class="product-price">$32.00</div>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <a href="#" class="btn btn-secondary">Add to Cart</a>
+                        </div>
+                    </div>
+                    <!-- Hand Cream -->
+                    <div class="product-card">
+                        <img src="https://images.unsplash.com/photo-1608248544142-2a568721d2f6?q=80&w=1887&auto=format&fit=crop" alt="Hand Cream">
+                        <div class="product-card-content">
+                            <h3>Luxury Hand Cream</h3>
+                            <p>Intensive hand treatment with almond oil</p>
+                            <div class="product-price">$28.00</div>
+                            <div class="product-rating">
+                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                            </div>
+                            <a href="#" class="btn btn-secondary">Add to Cart</a>
+                        </div>
+                    </div>
+                </div>
+                <button class="scroll-btn scroll-right" aria-label="Scroll right">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- Beauty Philosophy Section -->
+        <section class="innovation container">
+            <div class="innovation-content">
+                <h2>Beauty with Purpose</h2>
+                <p>At Bella Beauty, we believe in the power of natural ingredients and mindful beauty rituals. Our products are carefully formulated to enhance your natural beauty while being kind to your skin and the environment.</p>
+                <a href="#" class="btn">Discover Our Story</a>
+            </div>
+        </section>
+
+        <!-- Reviews Section -->
+        <section class="reviews container">
+            <h2>Beauty Stories</h2>
+            <div class="review-cards">
+                <div class="review-card">
+                    <blockquote>"The Vitamin C Serum has completely transformed my skin. My complexion is brighter and more radiant than ever!"</blockquote>
+                    <p class="reviewer-name">— Emma S.</p>
+                    <div class="review-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                </div>
+                <div class="review-card">
+                    <blockquote>"The Rose Garden perfume is divine! I receive compliments every time I wear it. Simply luxurious!"</blockquote>
+                    <p class="reviewer-name">— Sophie M.</p>
+                    <div class="review-rating">
+                        <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter Signup -->
+        <section class="newsletter container">
+            <h2>Join Our Beauty Community</h2>
+            <p>Subscribe to receive beauty tips, exclusive offers, and early access to new product launches. Enjoy <strong>15% off</strong> your first purchase!</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Enter your email address" required>
+                <button type="submit" class="btn">Subscribe</button>
+            </form>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Bella Beauty</h4>
+                <p>Your journey to natural radiance.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Shop</h4>
+                <ul>
+                    <li><a href="#skincare">Skincare</a></li>
+                    <li><a href="#makeup">Makeup</a></li>
+                    <li><a href="#fragrance">Fragrance</a></li>
+                    <li><a href="#haircare">Haircare</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Customer Care</h4>
+                <ul>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">Beauty Guide</a></li>
+                    <li><a href="#">Shipping Info</a></li>
+                    <li><a href="#">Returns</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Follow Us</h4>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2025 Bella Beauty. All Rights Reserved.
+        </div>
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            /* Slider controls */
+            const slider = document.querySelector('.products-slider');
+            const leftBtn = document.querySelector('.scroll-left');
+            const rightBtn = document.querySelector('.scroll-right');
+            const scrollAmount = 600; // Scroll by multiple product widths
+
+            leftBtn.addEventListener('click', () => {
+                slider.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+            });
+
+            rightBtn.addEventListener('click', () => {
+                slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+            });
+
+            slider.addEventListener('scroll', () => {
+                leftBtn.style.opacity = slider.scrollLeft > 0 ? '1' : '0.5';
+                rightBtn.style.opacity = slider.scrollLeft < (slider.scrollWidth - slider.clientWidth) ? '1' : '0.5';
+            });
+            leftBtn.style.opacity = '0.5';
+
+            /* Cart functionality */
+            const CART_KEY = 'bella_cart_v1';
+            const cartBtn = document.getElementById('cartBtn');
+            const cartDrawer = document.getElementById('cartDrawer');
+            const closeCart = document.getElementById('closeCart');
+            const cartItemsEl = document.getElementById('cartItems');
+            const cartCountEl = document.getElementById('cartCount');
+            const cartSubtotalEl = document.getElementById('cartSubtotal');
+            const checkoutBtn = document.getElementById('checkoutBtn');
+
+            let cart = loadCart();
+            renderCartCount();
+
+            const cartOverlay = document.getElementById('cartOverlay');
+
+            // Open/close drawer
+            cartBtn.addEventListener('click', () => {
+                const isOpen = cartDrawer.classList.toggle('open');
+                if (isOpen) {
+                    cartOverlay.classList.add('open');
+                    cartOverlay.setAttribute('aria-hidden', 'false');
+                } else {
+                    cartOverlay.classList.remove('open');
+                    cartOverlay.setAttribute('aria-hidden', 'true');
+                }
+                cartDrawer.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
+                renderCart();
+            });
+
+            closeCart.addEventListener('click', () => {
+                cartDrawer.classList.remove('open');
+                cartOverlay.classList.remove('open');
+                cartDrawer.setAttribute('aria-hidden', 'true');
+                cartOverlay.setAttribute('aria-hidden', 'true');
+            });
+
+            // clicking overlay closes drawer
+            cartOverlay.addEventListener('click', () => {
+                cartDrawer.classList.remove('open');
+                cartOverlay.classList.remove('open');
+                cartDrawer.setAttribute('aria-hidden', 'true');
+                cartOverlay.setAttribute('aria-hidden', 'true');
+            });
+
+            // close on Escape
+            document.addEventListener('keydown', (ev) => {
+                if (ev.key === 'Escape' && cartDrawer.classList.contains('open')) {
+                    cartDrawer.classList.remove('open');
+                    cartOverlay.classList.remove('open');
+                    cartDrawer.setAttribute('aria-hidden', 'true');
+                    cartOverlay.setAttribute('aria-hidden', 'true');
+                }
+            });
+
+            // Add to cart handler (delegated)
+            document.addEventListener('click', (e) => {
+                const btn = e.target.closest('.btn.btn-secondary');
+                if (!btn) return;
+                e.preventDefault();
+                const card = btn.closest('.product-card');
+                if (!card) return;
+                const title = card.querySelector('h3')?.innerText?.trim() || 'Product';
+                const img = card.querySelector('img')?.src || '';
+                const priceText = card.querySelector('.product-price')?.innerText || '$0';
+                const price = parsePrice(priceText);
+                const id = slugify(title);
+                addToCart({ id, title, price, img });
+            });
+
+            // Cart item actions (remove, qty change)
+            cartItemsEl.addEventListener('click', (e) => {
+                const removeBtn = e.target.closest('.cart-remove');
+                if (removeBtn) {
+                    const id = removeBtn.dataset.id;
+                    removeFromCart(id);
+                    return;
+                }
+            });
+
+            cartItemsEl.addEventListener('input', (e) => {
+                if (e.target.classList.contains('cart-qty')) {
+                    const id = e.target.dataset.id;
+                    const qty = parseInt(e.target.value) || 1;
+                    updateQty(id, qty);
+                }
+            });
+
+            checkoutBtn.addEventListener('click', () => {
+                if (!cart.items.length) { alert('Your cart is empty.'); return; }
+                // Placeholder checkout behavior
+                alert('Checkout not implemented in demo. Thank you for your order!');
+                cart = { items: [] };
+                saveCart();
+                renderCart();
+                renderCartCount();
+                cartDrawer.classList.remove('open');
+                if (cartOverlay) {
+                    cartOverlay.classList.remove('open');
+                    cartOverlay.setAttribute('aria-hidden', 'true');
+                }
+                cartDrawer.setAttribute('aria-hidden', 'true');
+            });
+
+            /* Cart helpers */
+            function loadCart() {
+                try {
+                    const raw = localStorage.getItem(CART_KEY);
+                    return raw ? JSON.parse(raw) : { items: [] };
+                } catch (err) {
+                    return { items: [] };
+                }
+            }
+
+            function saveCart() {
+                localStorage.setItem(CART_KEY, JSON.stringify(cart));
+            }
+
+            function renderCartCount() {
+                const count = cart.items.reduce((s, it) => s + it.qty, 0);
+                cartCountEl.innerText = count;
+            }
+
+            function renderCart() {
+                cartItemsEl.innerHTML = '';
+                if (!cart.items.length) {
+                    cartItemsEl.innerHTML = '<li class="empty">Your cart is empty.</li>';
+                    cartSubtotalEl.innerText = '$0.00';
+                    return;
+                }
+                cart.items.forEach(item => {
+                    const li = document.createElement('li');
+                    li.className = 'cart-item';
+                    li.innerHTML = `
+                        <img src="${item.img}" alt="${escapeHtml(item.title)}">
+                        <div class="cart-item-info">
+                            <div class="cart-item-title">${escapeHtml(item.title)}</div>
+                            <div class="cart-item-meta">${formatCurrency(item.price)}</div>
+                        </div>
+                        <div class="cart-item-actions">
+                            <input class="cart-qty" type="number" min="1" data-id="${item.id}" value="${item.qty}">
+                            <button class="cart-remove" data-id="${item.id}" aria-label="Remove">Remove</button>
+                        </div>
+                    `;
+                    cartItemsEl.appendChild(li);
+                });
+                const subtotal = cart.items.reduce((s, it) => s + it.price * it.qty, 0);
+                cartSubtotalEl.innerText = formatCurrency(subtotal);
+            }
+
+            function addToCart(product) {
+                cart.items = cart.items || [];
+                const existing = cart.items.find(i => i.id === product.id);
+                if (existing) existing.qty += 1;
+                else cart.items.push({ ...product, qty: 1 });
+                saveCart();
+                renderCartCount();
+                // briefly animate cart button
+                cartBtn.classList.add('pulse');
+                setTimeout(() => cartBtn.classList.remove('pulse'), 350);
+            }
+
+            function removeFromCart(id) {
+                cart.items = cart.items.filter(i => i.id !== id);
+                saveCart();
+                renderCart();
+                renderCartCount();
+            }
+
+            function updateQty(id, qty) {
+                const it = cart.items.find(i => i.id === id);
+                if (!it) return;
+                it.qty = Math.max(1, qty);
+                saveCart();
+                renderCart();
+                renderCartCount();
+            }
+
+            /* Utilities */
+            function parsePrice(text) {
+                const n = (text || '').replace(/[^0-9.-]+/g, '');
+                return parseFloat(n) || 0;
+            }
+
+            function formatCurrency(n) {
+                return '$' + n.toFixed(2);
+            }
+
+            function slugify(str) {
+                return str.toString().toLowerCase().trim().replace(/[^a-z0-9]+/g,'-');
+            }
+
+            function escapeHtml(str) {
+                return str.replace(/[&<>"']/g, function(ch) {
+                    return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[ch];
+                });
+            }
+
+        });
+    </script>
+</body>
+</html>
