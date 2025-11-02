@@ -24,7 +24,42 @@
         </button>
         <nav class="main-nav">
             <ul>
-                <li><a href="#skincare">Skincare</a></li>
+                <li class="has-dropdown">
+                    <a href="#skincare">Skincare <i class="fas fa-chevron-down" style="font-size: 0.8em; margin-left: 4px;"></i></a>
+                    <ul class="dropdown-menu">
+                        <li class="has-submenu">
+                            <a href="#cleanser" class="submenu-trigger">
+                                Cleanser
+                                <i class="fas fa-chevron-right" style="float:right;margin-top:3px"></i>
+                            </a>
+                            <ul class="submenu">
+                                <li><a href="#foaming-cleanser">Foaming Cleansers</a></li>
+                                <li><a href="#gel-cleanser">Gel Cleanser</a></li>
+                                <li><a href="#cream-cleanser">Cream Cleanser</a></li>
+                                <li><a href="#cleansing-balm">Cleansing Balms</a></li>
+                                <li><a href="#powder-cleanser">Powder Cleanser</a></li>
+                                <li><a href="#micellar-water">Micellar Water</a></li>
+                                <li><a href="#cleansing-oil">Cleansing Oil</a></li>
+                            </ul>
+                        </li>
+                        <li class="has-submenu">
+                            <a href="#toner" class="submenu-trigger">
+                                Toner
+                                <i class="fas fa-chevron-right" style="float:right;margin-top:3px"></i>
+                            </a>
+                            <ul class="submenu">
+                                <li><a href="#hydrating-toner">Hydrating Toner</a></li>
+                                <li><a href="#exfoliating-toner">Exfoliating Toner</a></li>
+                                <li><a href="#soothing-toner">Soothing Toner</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="#exfoliator">Exfoliator</a></li>
+                        <li><a href="#serum">Serum</a></li>
+                        <li><a href="#moisturizer">Moisturizer</a></li>
+                        <li><a href="#cream">Cream</a></li>
+                        <li><a href="#primer">Primer</a></li>
+                    </ul>
+                </li>
                 <li><a href="#makeup">Makeup</a></li>
                 <li><a href="#fragrance">Fragrance</a></li>
                 <li><a href="#haircare">Haircare</a></li>
@@ -45,7 +80,42 @@
             <button id="mobileNavClose" class="mobile-nav-close" aria-label="Close menu">&times;</button>
         </div>
         <ul class="mobile-nav-list">
-            <li><a href="#skincare">Skincare</a></li>
+            <li class="mobile-menu-section">
+                <button class="mobile-submenu-toggle">
+                    Skincare <i class="fas fa-chevron-down"></i>
+                </button>
+                <ul class="mobile-submenu">
+                    <li class="mobile-menu-section">
+                        <button class="mobile-submenu-toggle level-2">
+                            Cleanser <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <ul class="mobile-submenu level-2">
+                            <li><a href="#foaming-cleanser">Foaming Cleansers</a></li>
+                            <li><a href="#gel-cleanser">Gel Cleanser</a></li>
+                            <li><a href="#cream-cleanser">Cream Cleanser</a></li>
+                            <li><a href="#cleansing-balm">Cleansing Balms</a></li>
+                            <li><a href="#powder-cleanser">Powder Cleanser</a></li>
+                            <li><a href="#micellar-water">Micellar Water</a></li>
+                            <li><a href="#cleansing-oil">Cleansing Oil</a></li>
+                        </ul>
+                    </li>
+                    <li class="mobile-menu-section">
+                        <button class="mobile-submenu-toggle level-2">
+                            Toner <i class="fas fa-chevron-down"></i>
+                        </button>
+                        <ul class="mobile-submenu level-2">
+                            <li><a href="#hydrating-toner">Hydrating Toner</a></li>
+                            <li><a href="#exfoliating-toner">Exfoliating Toner</a></li>
+                            <li><a href="#soothing-toner">Soothing Toner</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#exfoliator">Exfoliator</a></li>
+                    <li><a href="#serum">Serum</a></li>
+                    <li><a href="#moisturizer">Moisturizer</a></li>
+                    <li><a href="#cream">Cream</a></li>
+                    <li><a href="#primer">Primer</a></li>
+                </ul>
+            </li>
             <li><a href="#makeup">Makeup</a></li>
             <li><a href="#fragrance">Fragrance</a></li>
             <li><a href="#haircare">Haircare</a></li>
@@ -1009,6 +1079,47 @@
                 if (ev.key === 'Escape' && mobileNav.classList.contains('open')) {
                     closeMobileNav();
                 }
+            });
+
+            /* Mobile submenu toggle */
+            document.querySelectorAll('.mobile-submenu-toggle').forEach(toggle => {
+                toggle.addEventListener('click', function() {
+                    const submenu = this.nextElementSibling;
+                    const wasActive = this.classList.contains('active');
+                    const isLevel2 = this.classList.contains('level-2');
+                    
+                    if (!isLevel2) {
+                        // For level 1, close other level 1 submenus
+                        document.querySelectorAll('.mobile-submenu-toggle:not(.level-2).active').forEach(activeToggle => {
+                            if (activeToggle !== this) {
+                                activeToggle.classList.remove('active');
+                                activeToggle.nextElementSibling.classList.remove('active');
+                            }
+                        });
+                    } else {
+                        // For level 2, only close other level 2 submenus within the same parent
+                        const parent = this.closest('.mobile-submenu');
+                        parent.querySelectorAll('.mobile-submenu-toggle.level-2.active').forEach(activeToggle => {
+                            if (activeToggle !== this) {
+                                activeToggle.classList.remove('active');
+                                activeToggle.nextElementSibling.classList.remove('active');
+                            }
+                        });
+                    }
+
+                    // Toggle clicked submenu
+                    this.classList.toggle('active');
+                    submenu.classList.toggle('active');
+
+                    // If this was already active, we just closed it, so don't reopen
+                    if (wasActive) {
+                        this.classList.remove('active');
+                        submenu.classList.remove('active');
+                    }
+
+                    // Prevent the click from closing parent menus
+                    event.stopPropagation();
+                });
             });
 
             /* Features marquee: duplicate feature items for seamless looping
