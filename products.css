@@ -207,12 +207,11 @@ img { max-width: 100%; display: block; }
 }
 
 .features-content {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+    /* Converted to a marquee container: hold a horizontally-scrolling track */
+    position: relative;
+    overflow: hidden;
     max-width: var(--container-width);
     margin: 0 auto;
-    flex-wrap: wrap;
 }
 
 .feature-item {
@@ -227,6 +226,31 @@ img { max-width: 100%; display: block; }
     color: var(--color-accent);
     font-size: 1.5rem;
     margin-right: 0.75rem;
+}
+
+/* Marquee track for continuous left-right scrolling */
+.features-track {
+    display: flex;
+    gap: 2.5rem;
+    align-items: center;
+    white-space: nowrap;
+}
+.features-track .feature-item { flex: 0 0 auto; margin: 0; }
+
+/* marquee animation - we translate the track by 50% because its content is duplicated */
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+.features-track {
+    animation: marquee var(--marquee-duration, 18s) linear infinite;
+}
+.features-content:hover .features-track { animation-play-state: paused; }
+
+/* make sure track is responsive on small screens */
+@media (max-width: 480px) {
+    .features-track { gap: 1.25rem; }
+    .feature-item { font-size: 0.85rem; }
 }
 
 /* 5. Products Slider */

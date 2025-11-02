@@ -618,6 +618,46 @@
                 }
             });
 
+            /* Features marquee: duplicate feature items for seamless looping
+               and set animation duration based on content width */
+            (function initFeaturesMarquee(){
+                const featuresContainer = document.querySelector('.features-content');
+                if (!featuresContainer) return;
+
+                // If the marquee is already initialized, skip
+                if (featuresContainer.querySelector('.features-track')) return;
+
+                // Create track and move current items into it
+                const track = document.createElement('div');
+                track.className = 'features-track';
+
+                // Move child nodes into track
+                while (featuresContainer.firstChild) {
+                    track.appendChild(featuresContainer.firstChild);
+                }
+
+                // Duplicate track content for seamless scroll
+                track.innerHTML = track.innerHTML + track.innerHTML;
+
+                // Append track back into container
+                featuresContainer.appendChild(track);
+
+                // Compute animation duration based on the width of the original content
+                function setMarqueeDuration() {
+                    // approximate speed: px per second
+                    const speed = 120; // change to taste
+                    // original width is half of the duplicated track
+                    const fullWidth = track.scrollWidth || track.getBoundingClientRect().width;
+                    const originalWidth = Math.max(1, fullWidth / 2);
+                    const duration = Math.max(6, Math.round(originalWidth / speed));
+                    featuresContainer.style.setProperty('--marquee-duration', duration + 's');
+                }
+
+                // Wait for images/fonts to load then measure
+                window.requestAnimationFrame(() => setMarqueeDuration());
+                window.addEventListener('resize', () => setMarqueeDuration());
+            })();
+
         });
     </script>
 </body>
