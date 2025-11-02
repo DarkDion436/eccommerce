@@ -29,7 +29,10 @@
     <header class="page-header">
         <a href="products.html" class="logo">Bella Beauty</a>
         <nav>
-            <a href="products.html" class="btn btn-outline">Continue shopping</a>
+            <!-- Replaced text link with a close icon button that navigates back to products.html -->
+            <button id="cartCloseBtn" class="mobile-nav-close" aria-label="Close and continue shopping" title="Close and continue shopping">
+                <i class="fas fa-times" style="font-size:18px;color:var(--text, #222)"></i>
+            </button>
         </nav>
     </header>
 
@@ -177,6 +180,16 @@
 
         // helpers
         function parsePrice(text){ const n = (text||'').replace(/[^0-9.-]+/g,''); return parseFloat(n)||0; }
+
+        // Close icon behavior: navigate back to products.html (preserves previous link behavior)
+        const cartCloseBtn = document.getElementById('cartCloseBtn');
+        if (cartCloseBtn) {
+            cartCloseBtn.addEventListener('click', function (e) {
+                e.preventDefault();
+                // navigate to products page (same as previous anchor)
+                window.location.href = 'products.html';
+            });
+        }
 
     </script>
 </body>
