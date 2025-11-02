@@ -72,8 +72,28 @@
                 </div>
                 <div class="cart-footer">
                     <div class="cart-subtotal">Subtotal: <span id="cartSubtotal">$0.00</span></div>
-                    <div class="cart-actions">
-                        <button id="checkoutBtn" class="btn">Checkout</button>
+                    <div class="cart-footer-controls">
+                        <div class="drawer-coupon">
+                            <input id="drawerCouponInput" type="text" placeholder="Coupon" aria-label="Coupon code">
+                            <button id="drawerApplyCoupon" class="btn btn-secondary">Apply</button>
+                        </div>
+                        <div class="drawer-shipping">
+                            <select id="drawerShippingCountry" aria-label="Country">
+                                <option value="KE">Kenya</option>
+                                <option value="UG">Uganda</option>
+                                <option value="TZ">Tanzania</option>
+                                <option value="OTHER">Other</option>
+                            </select>
+                            <button id="drawerEstimateShipping" class="btn btn-secondary">Estimate</button>
+                        </div>
+                        <div class="drawer-summary-rows">
+                            <div class="drawer-row">Shipping: <span id="drawerSummaryShipping">$0.00</span></div>
+                            <div class="drawer-row">Tax: <span id="drawerSummaryTax">$0.00</span></div>
+                            <div class="drawer-row total">Total: <strong id="drawerSummaryTotal">$0.00</strong></div>
+                        </div>
+                        <div class="cart-actions">
+                            <button id="checkoutBtn" class="btn">Checkout</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -117,10 +137,7 @@
                             <h3>Radiance Vitamin C Serum</h3>
                             <p>Brightening & Anti-aging serum with 20% Vitamin C</p>
                             <div class="product-price">$68.00</div>
-                            <div class="product-rating">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                            </div>
-                            <a href="#" class="btn btn-secondary">Add to Cart</a>
+                            <a href="#" class="btn btn-secondary"><i class="fas fa-plus"></i> Add to Cart</a>
                         </div>
                     </div>
                     <!-- Makeup -->
@@ -130,10 +147,7 @@
                             <h3>Silk Finish Foundation</h3>
                             <p>Weightless, natural coverage with hyaluronic acid</p>
                             <div class="product-price">$45.00</div>
-                            <div class="product-rating">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-                            </div>
-                            <a href="#" class="btn btn-secondary">Add to Cart</a>
+                            <a href="#" class="btn btn-secondary"><i class="fas fa-plus"></i> Add to Cart</a>
                         </div>
                     </div>
                     <!-- Fragrance -->
@@ -143,10 +157,7 @@
                             <h3>Rose Garden Eau de Parfum</h3>
                             <p>Elegant blend of rose, jasmine, and amber</p>
                             <div class="product-price">$120.00</div>
-                            <div class="product-rating">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                            </div>
-                            <a href="#" class="btn btn-secondary">Add to Cart</a>
+                            <a href="#" class="btn btn-secondary"><i class="fas fa-plus"></i> Add to Cart</a>
                         </div>
                     </div>
                     <!-- Facial Oil -->
@@ -156,10 +167,7 @@
                             <h3>Golden Elixir Facial Oil</h3>
                             <p>Luxurious blend of argan and jojoba oils</p>
                             <div class="product-price">$82.00</div>
-                            <div class="product-rating">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                            </div>
-                            <a href="#" class="btn btn-secondary">Add to Cart</a>
+                            <a href="#" class="btn btn-secondary"><i class="fas fa-plus"></i> Add to Cart</a>
                         </div>
                     </div>
                     <!-- Face Mask -->
@@ -169,10 +177,7 @@
                             <h3>Purifying Clay Mask</h3>
                             <p>Deep cleansing mask with kaolin clay</p>
                             <div class="product-price">$38.00</div>
-                            <div class="product-rating">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-                            </div>
-                            <a href="#" class="btn btn-secondary">Add to Cart</a>
+                            <a href="#" class="btn btn-secondary"><i class="fas fa-plus"></i> Add to Cart</a>
                         </div>
                     </div>
                     <!-- Lip Treatment -->
@@ -182,10 +187,7 @@
                             <h3>Nourishing Lip Treatment</h3>
                             <p>Hydrating lip balm with shea butter</p>
                             <div class="product-price">$24.00</div>
-                            <div class="product-rating">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                            </div>
-                            <a href="#" class="btn btn-secondary">Add to Cart</a>
+                            <a href="#" class="btn btn-secondary"><i class="fas fa-plus"></i> Add to Cart</a>
                         </div>
                     </div>
                     <!-- Eye Cream -->
@@ -195,10 +197,7 @@
                             <h3>Revitalizing Eye Cream</h3>
                             <p>Brightening eye cream with caffeine</p>
                             <div class="product-price">$56.00</div>
-                            <div class="product-rating">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
-                            </div>
-                            <a href="#" class="btn btn-secondary">Add to Cart</a>
+                            <a href="#" class="btn btn-secondary"><i class="fas fa-plus"></i> Add to Cart</a>
                         </div>
                     </div>
                     <!-- Hair Oil -->
@@ -208,10 +207,7 @@
                             <h3>Luxe Hair Oil</h3>
                             <p>Nourishing oil blend for silky smooth hair</p>
                             <div class="product-price">$42.00</div>
-                            <div class="product-rating">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                            </div>
-                            <a href="#" class="btn btn-secondary">Add to Cart</a>
+                            <a href="#" class="btn btn-secondary"><i class="fas fa-plus"></i> Add to Cart</a>
                         </div>
                     </div>
                     <!-- Body Lotion -->
@@ -221,10 +217,7 @@
                             <h3>Hydrating Body Lotion</h3>
                             <p>Rich moisturizer with coconut oil</p>
                             <div class="product-price">$32.00</div>
-                            <div class="product-rating">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                            </div>
-                            <a href="#" class="btn btn-secondary">Add to Cart</a>
+                            <a href="#" class="btn btn-secondary"><i class="fas fa-plus"></i> Add to Cart</a>
                         </div>
                     </div>
                     <!-- Hand Cream -->
@@ -234,10 +227,7 @@
                             <h3>Luxury Hand Cream</h3>
                             <p>Intensive hand treatment with almond oil</p>
                             <div class="product-price">$28.00</div>
-                            <div class="product-rating">
-                                <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
-                            </div>
-                            <a href="#" class="btn btn-secondary">Add to Cart</a>
+                            <a href="#" class="btn btn-secondary"><i class="fas fa-plus"></i> Add to Cart</a>
                         </div>
                     </div>
                 </div>
@@ -463,6 +453,15 @@
 
             const cartOverlay = document.getElementById('cartOverlay');
 
+            // Drawer summary elements
+            const drawerCouponInput = document.getElementById('drawerCouponInput');
+            const drawerApplyCoupon = document.getElementById('drawerApplyCoupon');
+            const drawerShippingCountry = document.getElementById('drawerShippingCountry');
+            const drawerEstimateShipping = document.getElementById('drawerEstimateShipping');
+            const drawerSummaryShipping = document.getElementById('drawerSummaryShipping');
+            const drawerSummaryTax = document.getElementById('drawerSummaryTax');
+            const drawerSummaryTotal = document.getElementById('drawerSummaryTotal');
+
             // Open/close drawer
             cartBtn.addEventListener('click', () => {
                 const isOpen = cartDrawer.classList.toggle('open');
@@ -575,6 +574,10 @@
                 if (!cart.items.length) {
                     cartItemsEl.innerHTML = '<li class="empty">Your cart is empty.</li>';
                     cartSubtotalEl.innerText = '$0.00';
+                    // update drawer totals
+                    if (drawerSummaryShipping) drawerSummaryShipping.innerText = '$0.00';
+                    if (drawerSummaryTax) drawerSummaryTax.innerText = '$0.00';
+                    if (drawerSummaryTotal) drawerSummaryTotal.innerText = '$0.00';
                     return;
                 }
                 cart.items.forEach(item => {
@@ -595,6 +598,11 @@
                 });
                 const subtotal = cart.items.reduce((s, it) => s + it.price * it.qty, 0);
                 cartSubtotalEl.innerText = formatCurrency(subtotal);
+                // compute summary for drawer (use drawer inputs if present)
+                const s = computeSummary();
+                if (drawerSummaryShipping) drawerSummaryShipping.innerText = formatCurrency(s.shipping);
+                if (drawerSummaryTax) drawerSummaryTax.innerText = formatCurrency(s.tax);
+                if (drawerSummaryTotal) drawerSummaryTotal.innerText = formatCurrency(s.total);
             }
 
             function addToCart(product) {
@@ -778,7 +786,9 @@
             function computeSummary() {
                 const subtotal = cart.items.reduce((s, it) => s + it.price * it.qty, 0);
                 // shipping logic (simple): Kenya flat 3.99, others 12.99
-                const country = shippingCountry ? shippingCountry.value : 'KE';
+                // prefer drawer selector if present
+                const countryEl = (typeof drawerShippingCountry !== 'undefined' && drawerShippingCountry) ? drawerShippingCountry : shippingCountry;
+                const country = countryEl ? countryEl.value : 'KE';
                 let shipping = 0;
                 if (subtotal === 0) shipping = 0;
                 else if (country === 'KE') shipping = 3.99;
@@ -788,7 +798,9 @@
                 const tax = +(subtotal * 0.16).toFixed(2);
                 // coupon handling
                 let discount = 0;
-                if (appliedCoupon === 'BELLA10') discount = +(subtotal * 0.10).toFixed(2);
+                // prefer drawer coupon input if present
+                const couponCode = (typeof drawerCouponInput !== 'undefined' && drawerCouponInput && drawerCouponInput.value) ? drawerCouponInput.value.trim().toUpperCase() : (couponInput ? couponInput.value.trim().toUpperCase() : '');
+                if (appliedCoupon === 'BELLA10' || couponCode === 'BELLA10') discount = +(subtotal * 0.10).toFixed(2);
                 const total = +(subtotal + shipping + tax - discount).toFixed(2);
                 return { subtotal: +subtotal.toFixed(2), shipping, tax, discount, total };
             }
@@ -873,10 +885,34 @@
                 });
             }
 
+            // Drawer coupon/apply
+            if (drawerApplyCoupon) {
+                drawerApplyCoupon.addEventListener('click', () => {
+                    const code = drawerCouponInput.value.trim().toUpperCase();
+                    if (!code) return alert('Enter a coupon code');
+                    if (code === 'BELLA10') {
+                        appliedCoupon = code;
+                        alert('Coupon applied: 10% off');
+                    } else {
+                        appliedCoupon = null;
+                        alert('Invalid coupon');
+                    }
+                    // update both drawer and page summaries
+                    renderCart(); renderOrderSummary();
+                });
+            }
+
             if (estimateShippingBtn) {
                 estimateShippingBtn.addEventListener('click', () => {
                     // simply re-render order summary which reads country/select
                     renderOrderSummary();
+                    alert('Shipping estimated based on country selection (demo).');
+                });
+            }
+
+            if (drawerEstimateShipping) {
+                drawerEstimateShipping.addEventListener('click', () => {
+                    renderCart(); renderOrderSummary();
                     alert('Shipping estimated based on country selection (demo).');
                 });
             }
