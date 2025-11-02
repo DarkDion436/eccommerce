@@ -97,6 +97,17 @@ img { max-width: 100%; display: block; }
     color: var(--color-primary);
 }
 
+/* Mobile menu button (hidden on desktop) */
+.mobile-menu-btn {
+    display: none;
+    background: transparent;
+    border: none;
+    font-size: 1.35rem;
+    color: var(--color-dark);
+    cursor: pointer;
+    padding: 8px;
+}
+
 .main-nav ul {
     display: flex;
     list-style: none;
@@ -125,6 +136,39 @@ img { max-width: 100%; display: block; }
     background-color: var(--color-accent);
     transition: width 0.3s ease;
 }
+
+/* Mobile navigation drawer */
+.mobile-nav {
+    position: fixed;
+    left: 0;
+    top: 0;
+    height: 100vh;
+    width: 280px;
+    background: var(--color-white);
+    box-shadow: 12px 0 30px rgba(0,0,0,0.12);
+    transform: translateX(-110%);
+    transition: transform 0.3s ease;
+    z-index: 250;
+    display: flex;
+    flex-direction: column;
+}
+.mobile-nav.open { transform: translateX(0); }
+.mobile-nav-header { display:flex; align-items:center; justify-content:space-between; padding:1rem 1.25rem; border-bottom:1px solid rgba(0,0,0,0.05); }
+.mobile-nav-list { list-style:none; padding:1rem; margin:0; display:flex; flex-direction:column; gap:0.5rem; }
+.mobile-nav-list a { padding:0.75rem 0.5rem; display:block; font-weight:600; }
+.mobile-nav-close { background:transparent; border:none; font-size:1.5rem; cursor:pointer; }
+.mobile-nav-cart { margin-top: 1rem; }
+
+.mobile-nav-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+    z-index: 240;
+}
+.mobile-nav-overlay.open { opacity: 1; visibility: visible; }
 
 .main-nav a:hover::after {
     width: 100%;
@@ -465,13 +509,11 @@ img { max-width: 100%; display: block; }
     .main-nav {
         margin-top: 1rem;
     }
-    .main-nav ul {
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-    .main-nav li {
-        margin: 0.5rem 1rem;
-    }
+    /* Hide desktop nav menu and show mobile button */
+    .main-nav ul { display: none; }
+    .mobile-menu-btn { display: inline-block; margin-left: 0.5rem; }
+
+    .main-nav li { margin: 0.5rem 1rem; }
 
     .hero {
         height: 70vh;
@@ -500,6 +542,12 @@ img { max-width: 100%; display: block; }
         display: flex;
         margin-top: 1rem;
     }
+
+    /* Make product cards larger on mobile so slider feels natural */
+    .products-slider { gap: 1rem; padding: 0.5rem 0; }
+    .product-card { flex: 0 0 80%; }
+    .product-card img { height: 200px; }
+    .scroll-btn { display: none; }
 }
 
 /* Cart styles */

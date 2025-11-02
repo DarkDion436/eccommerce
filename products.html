@@ -19,6 +19,9 @@
 <body>
     <header class="main-header">
         <a href="#" class="logo">Bella Beauty</a>
+        <button id="mobileMenuBtn" class="mobile-menu-btn" aria-label="Open menu" aria-expanded="false">
+            <i class="fas fa-bars"></i>
+        </button>
         <nav class="main-nav">
             <ul>
                 <li><a href="#skincare">Skincare</a></li>
@@ -34,6 +37,27 @@
             </ul>
         </nav>
     </header>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobileNav" class="mobile-nav" aria-hidden="true">
+        <div class="mobile-nav-header">
+            <a href="#" class="logo">Bella Beauty</a>
+            <button id="mobileNavClose" class="mobile-nav-close" aria-label="Close menu">&times;</button>
+        </div>
+        <ul class="mobile-nav-list">
+            <li><a href="#skincare">Skincare</a></li>
+            <li><a href="#makeup">Makeup</a></li>
+            <li><a href="#fragrance">Fragrance</a></li>
+            <li><a href="#haircare">Haircare</a></li>
+            <li class="mobile-nav-cart">
+                <button id="mobileCartBtn" aria-label="Open cart" class="cart-button">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span id="mobileCartCount" class="cart-count">0</span>
+                </button>
+            </li>
+        </ul>
+    </div>
+    <div id="mobileNavOverlay" class="mobile-nav-overlay" aria-hidden="true"></div>
 
             <!-- Cart Drawer -->
             <div id="cartDrawer" class="cart-drawer" aria-hidden="true">
@@ -517,6 +541,82 @@
                     return ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'})[ch];
                 });
             }
+
+            /* Mobile navigation handlers */
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const mobileNav = document.getElementById('mobileNav');
+            const mobileNavOverlay = document.getElementById('mobileNavOverlay');
+            const mobileNavClose = document.getElementById('mobileNavClose');
+            const mobileCartBtn = document.getElementById('mobileCartBtn');
+            const mobileCartCount = document.getElementById('mobileCartCount');
+
+            function openMobileNav() {
+                mobileNav.classList.add('open');
+                mobileNavOverlay.classList.add('open');
+                mobileNav.setAttribute('aria-hidden','false');
+                mobileNavBtnSetExpanded(true);
+            }
+
+            function closeMobileNav() {
+                mobileNav.classList.remove('open');
+                mobileNavOverlay.classList.remove('open');
+                mobileNav.setAttribute('aria-hidden','true');
+                mobileNavBtnSetExpanded(false);
+            }
+
+            function mobileNavBtnSetExpanded(v) {
+                if (mobileMenuBtn) mobileMenuBtn.setAttribute('aria-expanded', v ? 'true' : 'false');
+            }
+
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    const isOpen = mobileNav.classList.toggle('open');
+                    mobileNavOverlay.classList.toggle('open', isOpen);
+                    mobileNav.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
+                    mobileNavBtnSetExpanded(isOpen);
+                });
+            }
+
+            if (mobileNavClose) mobileNavClose.addEventListener('click', closeMobileNav);
+            if (mobileNavOverlay) mobileNavOverlay.addEventListener('click', closeMobileNav);
+
+            // Keep cart counts in sync with mobile menu badge
+            function syncMobileCartCount() {
+                const count = cart.items ? cart.items.reduce((s, it) => s + it.qty, 0) : 0;
+                if (mobileCartCount) mobileCartCount.innerText = count;
+                if (mobileCartBtn) mobileCartBtn.classList.remove('pulse');
+            }
+
+            // Open cart from mobile menu
+            if (mobileCartBtn) {
+                mobileCartBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    // close mobile nav then open cart
+                    closeMobileNav();
+                    cartDrawer.classList.add('open');
+                    cartOverlay.classList.add('open');
+                    cartDrawer.setAttribute('aria-hidden', 'false');
+                    cartOverlay.setAttribute('aria-hidden', 'false');
+                    renderCart();
+                });
+            }
+
+            // Update mobile count initially
+            syncMobileCartCount();
+
+            // Update counts whenever cart changes by overriding renderCartCount helper
+            const _origRenderCartCount = renderCartCount;
+            renderCartCount = function() {
+                _origRenderCartCount();
+                syncMobileCartCount();
+            };
+
+            // Close mobile nav on Escape
+            document.addEventListener('keydown', (ev) => {
+                if (ev.key === 'Escape' && mobileNav.classList.contains('open')) {
+                    closeMobileNav();
+                }
+            });
 
         });
     </script>
