@@ -12,7 +12,7 @@
     <style>
         /* Small adjustments specific to the standalone cart page */
         body { background: var(--bg, #fff); }
-        .page-header { display:flex;align-items:center;justify-content:space-between;padding:1rem 1.25rem;border-bottom:1px solid rgba(0,0,0,0.06); }
+        .cart-page-header { display:flex;align-items:center;justify-content:space-between;padding:1rem 1.25rem;border-bottom:1px solid rgba(0,0,0,0.06); }
         .cart-main { max-width:1100px;margin:2rem auto;display:grid;grid-template-columns:1fr 360px;gap:24px;padding:0 16px; }
         @media (max-width:900px){ .cart-main { grid-template-columns: 1fr; padding:0 12px } }
         .cart-items-list .empty { padding:32px;text-align:center;color:#666 }
@@ -26,15 +26,41 @@
     </style>
 </head>
 <body>
-    <header class="page-header">
+    <header class="main-header">
         <a href="products.html" class="logo">Bella Beauty</a>
-        <nav>
-            <!-- Replaced text link with a close icon button that navigates back to products.html -->
-            <button id="cartCloseBtn" class="mobile-nav-close" aria-label="Close and continue shopping" title="Close and continue shopping">
-                <i class="fas fa-times" style="font-size:18px;color:var(--text, #222)"></i>
-            </button>
+        <button id="mobileMenuBtn" class="mobile-menu-btn" aria-label="Open menu" aria-expanded="false">
+            <i class="fas fa-bars"></i>
+        </button>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="products.html">Home</a></li>
+                <li><a href="product-list.html?category=skincare">Skincare</a></li>
+                <li><a href="makeup.html">Makeup</a></li>
+                <li><a href="fragrance.html">Fragrance</a></li>
+                <li><a href="haircare.html">Haircare</a></li>
+                <li><a href="blog.html">Our Blog</a></li>
+                <li><a href="contactus.html">Contact Us</a></li>
+                <li class="nav-cart">
+                    <a href="cart.html" id="cartBtn" aria-label="View cart" class="cart-button active">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span id="cartCount" class="cart-count">0</span>
+                    </a>
+                </li>
+            </ul>
         </nav>
     </header>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobileNav" class="mobile-nav" aria-hidden="true">
+        <div class="mobile-nav-header">
+            <a href="products.html" class="logo">Bella Beauty</a>
+            <button id="mobileNavClose" class="mobile-nav-close" aria-label="Close menu">&times;</button>
+        </div>
+        <ul class="mobile-nav-list">
+            <!-- Mobile nav links will be populated by products.js -->
+        </ul>
+    </div>
+    <div id="mobileNavOverlay" class="mobile-nav-overlay" aria-hidden="true"></div>
 
     <main>
         <div class="cart-main">
@@ -75,6 +101,9 @@
 
     <footer style="text-align:center;padding:32px 12px;color:#777">&copy; 2025 Bella Beauty</footer>
 
+    <button id="backToTopBtn" class="back-to-top" title="Go to top"><i class="fas fa-arrow-up"></i></button>
+
+    <script src="products.js" defer></script>
     <script>
         // Use same storage key as site
         const CART_KEY = 'bella_cart_v1';
@@ -137,7 +166,21 @@
             cart.items.forEach(item=>{
                 const el = document.createElement('div');
                 el.className = 'cart-page-item';
-                el.innerHTML = `\n                    <img src="${item.img}" alt="${escapeHtml(item.title)}">\n                    <div class="cart-item-details">\n                        <div class="cart-item-title">${escapeHtml(item.title)}</div>\n                        <div class="cart-item-meta">${formatCurrency(item.price)}</div>\n                    </div>\n                    <div class="cart-item-controls">\n                        <div class="qty-control">\n                            <input class="cart-qty" type="number" min="1" data-id="${item.id}" value="${item.qty}">\n                        </div>\n                        <button class="cart-remove-plain btn btn-secondary" data-id="${item.id}">Remove</button>\n                    </div>\n                `;
+                el.innerHTML = `
+                    <img src="${item.img}" alt="${escapeHtml(item.title)}">
+                    <div class="cart-item-details">
+                        <div class="cart-item-title">${escapeHtml(item.title)}</div>
+                        <div class="cart-item-meta">${formatCurrency(item.price)}</div>
+                    </div>
+                    <div class="cart-item-controls">
+                        <div class="qty-control">
+                            <button class="qty-btn qty-down" data-id="${item.id}" aria-label="Decrease quantity">-</button>
+                            <input class="cart-qty" type="number" min="1" data-id="${item.id}" value="${item.qty}">
+                            <button class="qty-btn qty-up" data-id="${item.id}" aria-label="Increase quantity">+</button>
+                        </div>
+                    </div>
+                    <button class="cart-remove-plain" data-id="${item.id}" title="Remove item"><i class="fas fa-trash-alt"></i></button>
+                `;
                 cartPageItemsEl.appendChild(el);
             });
             renderOrderSummary();
@@ -147,6 +190,18 @@
         cartPageItemsEl.addEventListener('click', (e)=>{
             const rem = e.target.closest('.cart-remove-plain');
             if (rem){ const id = rem.dataset.id; removeFromCart(id); renderCartPage(); }
+
+            const qtyUp = e.target.closest('.qty-up');
+            if (qtyUp) {
+                const id = qtyUp.dataset.id;
+                updateQty(id, (cart.items.find(i=>i.id===id)?.qty || 0) + 1);
+            }
+
+            const qtyDown = e.target.closest('.qty-down');
+            if (qtyDown) {
+                const id = qtyDown.dataset.id;
+                updateQty(id, (cart.items.find(i=>i.id===id)?.qty || 0) - 1);
+            }
         });
         cartPageItemsEl.addEventListener('input', (e)=>{
             if (e.target.classList.contains('cart-qty')){
@@ -180,16 +235,6 @@
 
         // helpers
         function parsePrice(text){ const n = (text||'').replace(/[^0-9.-]+/g,''); return parseFloat(n)||0; }
-
-        // Close icon behavior: navigate back to products.html (preserves previous link behavior)
-        const cartCloseBtn = document.getElementById('cartCloseBtn');
-        if (cartCloseBtn) {
-            cartCloseBtn.addEventListener('click', function (e) {
-                e.preventDefault();
-                // navigate to products page (same as previous anchor)
-                window.location.href = 'products.html';
-            });
-        }
 
     </script>
 </body>

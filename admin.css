@@ -1,0 +1,297 @@
+/* Bella Beauty - Admin Dashboard Styles */
+
+:root {
+    --admin-bg: #f4f7fa;
+    --sidebar-bg: #2c3e50;
+    --sidebar-text: #ecf0f1;
+    --sidebar-active-bg: #34495e;
+    --primary-color: #00a651; /* Main site green */
+    --primary-hover: #008a44;
+    --text-dark: #34495e;
+    --text-light: #7f8c8d;
+    --panel-bg: #ffffff;
+    --border-color: #e1e5e8;
+    --font-body: 'Montserrat', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--admin-bg);
+    color: var(--text-dark);
+}
+
+.admin-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* --- Sidebar --- */
+.admin-sidebar {
+    width: 240px;
+    background-color: var(--sidebar-bg);
+    color: var(--sidebar-text);
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+}
+
+.sidebar-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--sidebar-active-bg);
+    text-align: center;
+}
+
+.admin-logo {
+    color: var(--sidebar-text);
+    font-weight: 700;
+    font-size: 1.2rem;
+    text-decoration: none;
+}
+
+.admin-nav {
+    flex-grow: 1;
+}
+
+.admin-nav ul {
+    list-style: none;
+    padding: 1rem 0;
+}
+
+.admin-nav a {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.9rem 1.5rem;
+    color: var(--sidebar-text);
+    text-decoration: none;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+}
+
+.admin-nav a:hover {
+    background-color: var(--sidebar-active-bg);
+}
+
+.admin-nav li.active > a {
+    background-color: var(--primary-color);
+    font-weight: 700;
+}
+
+.sidebar-footer {
+    border-top: 1px solid var(--sidebar-active-bg);
+}
+
+.sidebar-footer a {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1.25rem 1.5rem;
+    color: var(--sidebar-text);
+    text-decoration: none;
+}
+
+/* --- Main Content --- */
+.admin-content {
+    flex-grow: 1;
+    padding: 2rem;
+}
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.admin-header h1 {
+    font-size: 1.8rem;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem;
+    border: none;
+    border-radius: 6px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: var(--primary-hover);
+}
+
+/* --- Content Panel & Table --- */
+.content-panel {
+    background-color: var(--panel-bg);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.panel-header {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.search-filter-controls {
+    display: flex;
+    gap: 1rem;
+}
+
+.search-filter-controls input,
+.search-filter-controls select {
+    padding: 0.6rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+}
+
+.table-responsive {
+    overflow-x: auto;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.data-table th, .data-table td {
+    padding: 1rem 1.5rem;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    vertical-align: middle;
+}
+
+.data-table th {
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    color: var(--text-light);
+}
+
+.data-table img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 6px;
+}
+
+.status-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 0.5rem;
+}
+.status-active { background-color: #2ecc71; }
+.status-low-stock { background-color: #f39c12; }
+.status-inactive { background-color: #e74c3c; }
+
+.tag {
+    display: inline-block;
+    padding: 0.25rem 0.6rem;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: white;
+}
+.tag-blue { background-color: #3498db; }
+.tag-purple { background-color: #9b59b6; }
+.tag-green { background-color: #27ae60; }
+.tag-pink { background-color: #e91e63; }
+
+.btn-icon {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+    color: var(--text-light);
+    padding: 0.5rem;
+    transition: color 0.2s ease;
+}
+.btn-icon:hover { color: var(--primary-color); }
+.btn-icon-danger:hover { color: #e74c3c; }
+
+/* --- Responsive Design --- */
+@media (max-width: 992px) {
+    .admin-sidebar {
+        width: 70px;
+    }
+    .admin-sidebar .admin-logo,
+    .admin-sidebar .admin-nav span,
+    .admin-sidebar .sidebar-footer span {
+        display: none;
+    }
+    .admin-nav a, .sidebar-footer a {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .admin-layout {
+        flex-direction: column;
+    }
+    .admin-sidebar {
+        width: 100%;
+        height: auto;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .admin-nav ul {
+        display: flex;
+        flex-direction: row;
+    }
+    .sidebar-header, .sidebar-footer { display: none; }
+
+    .data-table thead {
+        display: none;
+    }
+    .data-table tr {
+        display: block;
+        margin-bottom: 1rem;
+        border: 1px solid var(--border-color);
+        border-radius: 8px;
+        padding: 1rem;
+    }
+    .data-table td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.75rem 0;
+        border: none;
+    }
+    .data-table td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: var(--text-dark);
+    }
+    .data-table td:last-child {
+        justify-content: flex-end;
+    }
+}
+
+@media (max-width: 480px) {
+    .admin-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    .search-filter-controls {
+        flex-direction: column;
+    }
+}

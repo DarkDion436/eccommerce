@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bella Beauty - Database Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1><i class="fas fa-database"></i> Bella Beauty Database Dashboard</h1>
+        <p>A visual representation of the database schema defined in <code>schema.sql</code>.</p>
+    </header>
+    <main>
+        <section class="tables-grid">
+            <!-- Users Table -->
+            <div class="table-card">
+                <h2><i class="fas fa-users"></i> Users</h2>
+                <ul>
+                    <li><strong>id:</strong> INT (PK)</li>
+                    <li><strong>full_name:</strong> VARCHAR</li>
+                    <li><strong>email:</strong> VARCHAR (UNIQUE)</li>
+                    <li><strong>password_hash:</strong> VARCHAR</li>
+                    <li><strong>shipping_address:</strong> TEXT</li>
+                    <li><strong>created_at:</strong> TIMESTAMP</li>
+                </ul>
+            </div>
+
+            <!-- Categories Table -->
+            <div class="table-card">
+                <h2><i class="fas fa-tags"></i> Categories</h2>
+                <ul>
+                    <li><strong>id:</strong> INT (PK)</li>
+                    <li><strong>name:</strong> VARCHAR (UNIQUE)</li>
+                    <li><strong>slug:</strong> VARCHAR (UNIQUE)</li>
+                    <li><strong>description:</strong> TEXT</li>
+                </ul>
+            </div>
+
+            <!-- Products Table -->
+            <div class="table-card">
+                <h2><i class="fas fa-box-open"></i> Products</h2>
+                <ul>
+                    <li><strong>id:</strong> INT (PK)</li>
+                    <li><strong>category_id:</strong> INT (FK &rarr; Categories)</li>
+                    <li><strong>title:</strong> VARCHAR</li>
+                    <li><strong>description:</strong> TEXT</li>
+                    <li><strong>price:</strong> DECIMAL</li>
+                    <li><strong>image_url:</strong> VARCHAR</li>
+                    <li><strong>stock_quantity:</strong> INT</li>
+                    <li><strong>created_at:</strong> TIMESTAMP</li>
+                </ul>
+            </div>
+
+            <!-- Product_Details Table -->
+            <div class="table-card">
+                <h2><i class="fas fa-info-circle"></i> Product_Details</h2>
+                <ul>
+                    <li><strong>id:</strong> INT (PK)</li>
+                    <li><strong>product_id:</strong> INT (FK &rarr; Products)</li>
+                    <li><strong>attribute_name:</strong> VARCHAR</li>
+                    <li><strong>attribute_value:</strong> VARCHAR</li>
+                </ul>
+            </div>
+
+            <!-- Orders Table -->
+            <div class="table-card">
+                <h2><i class="fas fa-receipt"></i> Orders</h2>
+                <ul>
+                    <li><strong>id:</strong> INT (PK)</li>
+                    <li><strong>user_id:</strong> INT (FK &rarr; Users)</li>
+                    <li><strong>total_amount:</strong> DECIMAL</li>
+                    <li><strong>status:</strong> VARCHAR</li>
+                    <li><strong>shipping_address:</strong> TEXT</li>
+                    <li><strong>order_date:</strong> TIMESTAMP</li>
+                </ul>
+            </div>
+
+            <!-- Order_Items Table -->
+            <div class="table-card">
+                <h2><i class="fas fa-shopping-basket"></i> Order_Items</h2>
+                <ul>
+                    <li><strong>order_id:</strong> INT (PK, FK &rarr; Orders)</li>
+                    <li><strong>product_id:</strong> INT (PK, FK &rarr; Products)</li>
+                    <li><strong>quantity:</strong> INT</li>
+                    <li><strong>price_per_unit:</strong> DECIMAL</li>
+                </ul>
+            </div>
+
+            <!-- Reviews Table -->
+            <div class="table-card">
+                <h2><i class="fas fa-star"></i> Reviews</h2>
+                <ul>
+                    <li><strong>id:</strong> INT (PK)</li>
+                    <li><strong>product_id:</strong> INT (FK &rarr; Products)</li>
+                    <li><strong>user_id:</strong> INT (FK &rarr; Users)</li>
+                    <li><strong>rating:</strong> INT (1-5)</li>
+                    <li><strong>comment:</strong> TEXT</li>
+                    <li><strong>created_at:</strong> TIMESTAMP</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="links-section">
+            <h3>Database Scripts</h3>
+            <p>These files are used to build and populate the database.</p>
+            <a href="schema.sql" class="file-link"><i class="fas fa-file-code"></i> View schema.sql</a>
+            <a href="seed.sql" class="file-link"><i class="fas fa-file-alt"></i> View seed.sql</a>
+        </section>
+    </main>
+</body>
+</html>

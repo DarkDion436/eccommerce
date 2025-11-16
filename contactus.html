@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Bella Beauty</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="products.css">
+</head>
+<body>
+    <header class="main-header">
+        <a href="products.html" class="logo">Bella Beauty</a>
+        <button id="mobileMenuBtn" class="mobile-menu-btn" aria-label="Open menu" aria-expanded="false">
+            <i class="fas fa-bars"></i>
+        </button>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="products.html">Home</a></li>
+                <li><a href="product-list.html?category=skincare">Skincare</a></li>
+                <li><a href="makeup.html">Makeup</a></li>
+                <li><a href="fragrance.html">Fragrance</a></li>
+                <li><a href="haircare.html">Haircare</a></li>
+                <li><a href="blog.html">Our Blog</a></li>
+                <li><a href="contactus.html" class="active">Contact Us</a></li>
+                <li class="nav-cart">
+                    <a href="cart.html" id="cartBtn" aria-label="View cart" class="cart-button">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span id="cartCount" class="cart-count">0</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobileNav" class="mobile-nav" aria-hidden="true">
+        <div class="mobile-nav-header">
+            <a href="products.html" class="logo">Bella Beauty</a>
+            <button id="mobileNavClose" class="mobile-nav-close" aria-label="Close menu">&times;</button>
+        </div>
+        <ul class="mobile-nav-list">
+            <li><a href="products.html">Home</a></li>
+            <li><a href="product-list.html?category=skincare">Skincare</a></li>
+            <li><a href="makeup.html">Makeup</a></li>
+            <li><a href="fragrance.html">Fragrance</a></li>
+            <li><a href="haircare.html">Haircare</a></li>
+            <li><a href="blog.html">Our Blog</a></li>
+            <li><a href="contactus.html">Contact Us</a></li>
+            <li class="mobile-nav-cart nav-cart">
+                <a href="cart.html" id="mobileCartBtn" aria-label="View cart" class="cart-button">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span id="mobileCartCount" class="cart-count">0</span>
+                </a>
+            </li>
+    </div>
+    <div id="mobileNavOverlay" class="mobile-nav-overlay" aria-hidden="true"></div>
+
+    <!-- Cart Drawer -->
+    <div id="cartDrawer" class="cart-drawer" aria-hidden="true">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <button id="closeCart" aria-label="Close cart" class="cart-close">&times;</button>
+        </div>
+        <div class="cart-body">
+            <ul id="cartItems" class="cart-items">
+                <!-- dynamically populated -->
+            </ul>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-subtotal">Subtotal: <span id="cartSubtotal">$0.00</span></div>
+            <div class="cart-footer-controls">
+                <div class="drawer-coupon">
+                    <input id="drawerCouponInput" type="text" placeholder="Coupon" aria-label="Coupon code">
+                    <button id="drawerApplyCoupon" class="btn btn-secondary">Apply</button>
+                </div>
+                <div class="drawer-shipping">
+                    <select id="drawerShippingCountry" aria-label="Country">
+                        <option value="KE">Kenya</option>
+                        <option value="UG">Uganda</option>
+                        <option value="TZ">Tanzania</option>
+                        <option value="OTHER">Other</option>
+                    </select>
+                    <button id="drawerEstimateShipping" class="btn btn-secondary">Estimate</button>
+                </div>
+                <div class="drawer-summary-rows">
+                    <div class="drawer-row">Shipping: <span id="drawerSummaryShipping">$0.00</span></div>
+                    <div class="drawer-row">Tax: <span id="drawerSummaryTax">$0.00</span></div>
+                    <div class="drawer-row total">Total: <strong id="drawerSummaryTotal">$0.00</strong></div>
+                </div>
+                <div class="cart-actions">
+                    <a href="cart.html" class="btn">View Full Cart</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- overlay sits behind the drawer to capture outside clicks -->
+    <div id="cartOverlay" class="cart-overlay" aria-hidden="true"></div>
+
+    <!-- Cart Drawer and Overlay have been removed to restore full-page cart view -->
+    <main class="main-content">
+        <!--<div class="page-title">
+            <h1>Contact Us</h1>
+        </div>-->
+
+        <div class="contact-container">
+            <div class="contact-form-wrapper">
+                <h2>Send Us a Message</h2>
+                <p>Have a question or feedback? Fill out the form below and we'll get back to you as soon as possible.</p>
+                <form id="contactForm" class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="6" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+            </div>
+            <div class="contact-info-wrapper">
+                <h2>Contact Information</h2>
+                <p>You can also reach us through the following channels:</p>
+                <ul class="contact-info-list">
+                    <li><i class="fas fa-map-marker-alt"></i> 123 Beauty Lane, Nairobi, Kenya</li>
+                    <li><i class="fas fa-phone-alt"></i> +254 700 123 456</li>
+                    <li><i class="fas fa-envelope"></i> support@bellabeauty.com</li>
+                </ul>
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Bella Beauty</h4>
+                <p>Your journey to natural radiance.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Shop</h4>
+                <ul>
+                    <li><a href="product-list.html?category=skincare">Skincare</a></li>
+                    <li><a href="makeup.html">Makeup</a></li>
+                    <li><a href="fragrance.html">Fragrance</a></li>
+                    <li><a href="haircare.html">Haircare</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Customer Care</h4>
+                <ul>
+                    <li><a href="contactus.html">Contact Us</a></li>
+                    <li><a href="blog.html">Our Blog</a></li>
+                    <li><a href="#">Beauty Guide</a></li>
+                    <li><a href="#">Shipping Info</a></li>
+                    <li><a href="#">Returns</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2025 Bella Beauty. All Rights Reserved.
+        </div>
+    </footer>
+
+    <button id="backToTopBtn" class="back-to-top" title="Go to top"><i class="fas fa-arrow-up"></i></button>
+
+    <script src="products.js" defer></script>
+
+</body>
+</html>

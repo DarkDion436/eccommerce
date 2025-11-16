@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Management - Bella Beauty Admin</title>
+    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="admin-layout">
+        <aside class="admin-sidebar">
+            <div class="sidebar-header">
+                <a href="#" class="admin-logo">Bella Beauty Admin</a>
+            </div>
+            <nav class="admin-nav">
+                <ul>
+                    <li><a href="#"><i class="fas fa-tachometer-alt"></i> <span>Dashboard</span></a></li>
+                    <li class="active"><a href="admin-products.html"><i class="fas fa-box-open"></i> <span>Products</span></a></li>
+                    <li><a href="#"><i class="fas fa-receipt"></i> <span>Orders</span></a></li>
+                    <li><a href="#"><i class="fas fa-users"></i> <span>Customers</span></a></li>
+                    <li><a href="#"><i class="fas fa-tags"></i> <span>Categories</span></a></li>
+                    <li><a href="#"><i class="fas fa-percent"></i> <span>Discounts</span></a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <a href="#"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></a>
+            </div>
+        </aside>
+
+        <main class="admin-content">
+            <header class="admin-header">
+                <h1>Product Management</h1>
+                <div class="header-actions">
+                    <a href="#" class="btn btn-primary"><i class="fas fa-plus"></i> Add New Product</a>
+                </div>
+            </header>
+
+            <section class="content-panel">
+                <div class="panel-header">
+                    <div class="search-filter-controls">
+                        <input type="search" placeholder="Search by product name...">
+                        <select>
+                            <option value="">All Categories</option>
+                            <option value="skincare">Skincare</option>
+                            <option value="makeup">Makeup</option>
+                            <option value="fragrance">Fragrance</option>
+                            <option value="haircare">Haircare</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th>Product Title</th>
+                                <th>Category</th>
+                                <th>Price</th>
+                                <th>Stock</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Sample Row 1 -->
+                            <tr>
+                                <td data-label="Image"><img src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?w=100" alt="Vitamin C Serum"></td>
+                                <td data-label="Product Title">Radiance Vitamin C Serum</td>
+                                <td data-label="Category"><span class="tag tag-blue">Skincare</span></td>
+                                <td data-label="Price">$68.00</td>
+                                <td data-label="Stock">100</td>
+                                <td data-label="Status"><span class="status-dot status-active"></span> Active</td>
+                                <td data-label="Actions">
+                                    <button class="btn-icon" aria-label="Edit"><i class="fas fa-pencil-alt"></i></button>
+                                    <button class="btn-icon btn-icon-danger" aria-label="Delete"><i class="fas fa-trash-alt"></i></button>
+                                </td>
+                            </tr>
+                            <!-- Sample Row 2 -->
+                            <tr>
+                                <td data-label="Image"><img src="https://images.unsplash.com/photo-1592914610354-fd354ea45e48?w=100" alt="Perfume"></td>
+                                <td data-label="Product Title">Rose Garden Eau de Parfum</td>
+                                <td data-label="Category"><span class="tag tag-purple">Fragrance</span></td>
+                                <td data-label="Price">$120.00</td>
+                                <td data-label="Stock">80</td>
+                                <td data-label="Status"><span class="status-dot status-active"></span> Active</td>
+                                <td data-label="Actions">
+                                    <button class="btn-icon" aria-label="Edit"><i class="fas fa-pencil-alt"></i></button>
+                                    <button class="btn-icon btn-icon-danger" aria-label="Delete"><i class="fas fa-trash-alt"></i></button>
+                                </td>
+                            </tr>
+                            <!-- Sample Row 3 -->
+                            <tr>
+                                <td data-label="Image"><img src="https://images.unsplash.com/photo-1585232004423-244e0e6904e3?w=100" alt="Hair Oil"></td>
+                                <td data-label="Product Title">Luxe Hair Oil</td>
+                                <td data-label="Category"><span class="tag tag-green">Haircare</span></td>
+                                <td data-label="Price">$42.00</td>
+                                <td data-label="Stock">5</td>
+                                <td data-label="Status"><span class="status-dot status-low-stock"></span> Low Stock</td>
+                                <td data-label="Actions">
+                                    <button class="btn-icon" aria-label="Edit"><i class="fas fa-pencil-alt"></i></button>
+                                    <button class="btn-icon btn-icon-danger" aria-label="Delete"><i class="fas fa-trash-alt"></i></button>
+                                </td>
+                            </tr>
+                            <!-- Sample Row 4 -->
+                            <tr>
+                                <td data-label="Image"><img src="https://images.unsplash.com/photo-1590155289999-69fd3d2c7a4a?w=100" alt="Lipstick"></td>
+                                <td data-label="Product Title">Velvet Matte Lipstick</td>
+                                <td data-label="Category"><span class="tag tag-pink">Makeup</span></td>
+                                <td data-label="Price">$24.00</td>
+                                <td data-label="Stock">0</td>
+                                <td data-label="Status"><span class="status-dot status-inactive"></span> Out of Stock</td>
+                                <td data-label="Actions">
+                                    <button class="btn-icon" aria-label="Edit"><i class="fas fa-pencil-alt"></i></button>
+                                    <button class="btn-icon btn-icon-danger" aria-label="Delete"><i class="fas fa-trash-alt"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
