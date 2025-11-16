@@ -50,6 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const cartItemsEl = document.getElementById('cartItems');
     const cartCountEl = document.getElementById('cartCount');
     const cartSubtotalEl = document.getElementById('cartSubtotal');
+    const mobileCartCount = document.getElementById('mobileCartCount');
     const checkoutBtn = document.getElementById('checkoutBtn');
 
 
@@ -116,6 +117,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Add to cart from modal
     const modalAddToCartBtn = document.getElementById('modalAddToCart');
     if (modalAddToCartBtn) {
+        const modal = document.getElementById('productModal');
         modalAddToCartBtn.addEventListener('click', () => {
             const modal = document.getElementById('productModal');
             const modalQtyInput = document.getElementById('modalQtyInput');
@@ -133,9 +135,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
             saveCart();
             renderCartCount();
-            if (cartCountEl) { cartCountEl.closest('.cart-button').classList.add('pulse'); setTimeout(() => { cartCountEl.closest('.cart-button').classList.remove('pulse'); }, 350); }
-
-            // The confirmation logic is now in product-list.html, so this part is simplified.
+            
+            // Provide user feedback and close modal
+            modalAddToCartBtn.disabled = true;
+            setTimeout(() => {
+                modal.classList.remove('open');
+                modal.setAttribute('aria-hidden', 'true');
+                modalAddToCartBtn.innerHTML = 'Add to Cart';
+                modalAddToCartBtn.disabled = false;
+            }, 1500);
         });
     }
 
@@ -190,6 +198,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function renderCartCount() {
         const count = cart.items.reduce((s, it) => s + it.qty, 0);
         if (cartCountEl) cartCountEl.innerText = count;
+        if (mobileCartCount) mobileCartCount.innerText = count;
     }
 
     function renderCart() {
@@ -249,6 +258,7 @@ document.addEventListener('DOMContentLoaded', function() {
         saveCart();
         renderCart();
         renderCartCount();
+        syncAllCartCounts();
     }
 
     function updateQty(id, qty) {
@@ -258,6 +268,7 @@ document.addEventListener('DOMContentLoaded', function() {
         saveCart();
         renderCart();
         renderCartCount();
+        syncAllCartCounts();
     }
 
     /* Utilities */
@@ -323,11 +334,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const mobileNavOverlay = document.getElementById('mobileNavOverlay');
     const mobileNavClose = document.getElementById('mobileNavClose');
     const mobileCartBtn = document.getElementById('mobileCartBtn');
-    const mobileCartCount = document.getElementById('mobileCartCount');
 
     if (mobileMenuBtn) {
-        mobileMenuBtn.addEventListener('click', () => {
-            const isOpen = mobileNav.classList.toggle('open');
+
             mobileNavOverlay.classList.toggle('open', isOpen);
             mobileNav.setAttribute('aria-hidden', isOpen ? 'false' : 'true');
             mobileNavBtnSetExpanded(isOpen);
@@ -427,24 +436,15 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    function syncMobileCartCount() {
-        const count = cart.items ? cart.items.reduce((s, it) => s + it.qty, 0) : 0;
-        if (mobileCartCount) mobileCartCount.innerText = count;
-    }
     populateMobileNav();
-    // Sync cart count on load for both desktop and mobile
-    (function syncAllCartCounts() {
-        const count = cart.items ? cart.items.reduce((s, it) => s + it.qty, 0) : 0;
-        if (cartCountEl) cartCountEl.innerText = count;
-        if (mobileCartCount) mobileCartCount.innerText = count;
-    })();
-    // Add this to the global scope so it can be called from other scripts
-    window.syncAllCartCounts = function() {
+    /
+
+    syncAllCartCounts();
+    // Add this to the global scope so it can be called frtion() {
         syncAllCartCounts();
     };
 
-    /* Features marquee */
-    (function initFeaturesMarquee(){
+    /* Features marquee */ction initFeaturesMarquee(){
         const featuresContainer = document.querySelector('.features-content');
         if (!featuresContainer) return;
         if (featuresContainer.querySelector('.features-track')) return;

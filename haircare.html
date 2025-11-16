@@ -356,25 +356,8 @@
             modalQtyDown.addEventListener('click', () => modalQtyInput.value = Math.max(1, parseInt(modalQtyInput.value) - 1));
 
             modalAddToCartBtn.addEventListener('click', () => {
-                if (modalAddToCartBtn.disabled) return;
-
-                // Add to cart logic (can be handled by products.js if it's global)
-                const qty = parseInt(modalQtyInput.value) || 1;
-                const product = { 
-                    id: modal.dataset.productId, 
-                    title: modal.dataset.productTitle, 
-                    price: parseFloat(modal.dataset.productPrice), 
-                    img: modal.dataset.productImg 
-                };
-                // This assumes a global addToCart function or similar mechanism exists
-
-                modalAddToCartBtn.innerHTML = '<i class="fas fa-check"></i> Added!'; 
-                modalAddToCartBtn.disabled = true;
-                setTimeout(() => { 
-                    closeModal(); 
-                    modalAddToCartBtn.innerHTML = 'Add to Cart'; 
-                    modalAddToCartBtn.disabled = false; 
-                }, 1500);
+                // The core "add to cart" logic is now handled by the global products.js script.
+                // That script also handles the UI feedback.
             });
         });
     </script>

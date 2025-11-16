@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bella Beauty - Discover Your Natural Radiance</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="products.css">
+</head>
+<body>
+    <header class="main-header">
+        <a href="index.html" class="logo">Bella Beauty</a>
+        <button id="mobileMenuBtn" class="mobile-menu-btn" aria-label="Open menu" aria-expanded="false">
+            <i class="fas fa-bars"></i>
+        </button>
+        <nav class="main-nav">
+            <ul>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="product-list.html?category=skincare">Skincare</a></li>
+                <li><a href="makeup.html">Makeup</a></li>
+                <li><a href="fragrance.html">Fragrance</a></li>
+                <li><a href="haircare.html">Haircare</a></li>
+                <li><a href="blog.html">Our Blog</a></li>
+                <li><a href="contactus.html">Contact Us</a></li>
+                <li class="nav-cart">
+                    <a href="cart.html" id="cartBtn" aria-label="View cart" class="cart-button">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span id="cartCount" class="cart-count">0</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobileNav" class="mobile-nav" aria-hidden="true">
+        <div class="mobile-nav-header">
+            <a href="index.html" class="logo">Bella Beauty</a>
+            <button id="mobileNavClose" class="mobile-nav-close" aria-label="Close menu">&times;</button>
+        </div>
+        <ul class="mobile-nav-list">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="product-list.html?category=skincare">Skincare</a></li>
+            <li><a href="makeup.html">Makeup</a></li>
+            <li><a href="fragrance.html">Fragrance</a></li>
+            <li><a href="haircare.html">Haircare</a></li>
+            <li><a href="blog.html">Our Blog</a></li>
+            <li><a href="contactus.html">Contact Us</a></li>
+            <li class="mobile-nav-cart">
+                <button id="mobileCartBtn" aria-label="Open cart" class="cart-button">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span id="mobileCartCount" class="cart-count">0</span>
+                </button>
+            </li>
+        </ul>
+    </div>
+    <div id="mobileNavOverlay" class="mobile-nav-overlay" aria-hidden="true"></div>
+
+    <!-- Cart Drawer -->
+    <div id="cartDrawer" class="cart-drawer" aria-hidden="true">
+        <div class="cart-header">
+            <h3>Your Cart</h3>
+            <button id="closeCart" aria-label="Close cart" class="cart-close">&times;</button>
+        </div>
+        <div class="cart-body">
+            <ul id="cartItems" class="cart-items">
+                <!-- dynamically populated -->
+            </ul>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-subtotal">Subtotal: <span id="cartSubtotal">$0.00</span></div>
+            <div class="cart-footer-controls">
+                <div class="drawer-coupon">
+                    <input id="drawerCouponInput" type="text" placeholder="Coupon" aria-label="Coupon code">
+                    <button id="drawerApplyCoupon" class="btn btn-secondary">Apply</button>
+                </div>
+                <div class="drawer-shipping">
+                    <select id="drawerShippingCountry" aria-label="Country">
+                        <option value="KE">Kenya</option>
+                        <option value="UG">Uganda</option>
+                        <option value="TZ">Tanzania</option>
+                        <option value="OTHER">Other</option>
+                    </select>
+                    <button id="drawerEstimateShipping" class="btn btn-secondary">Estimate</button>
+                </div>
+                <div class="drawer-summary-rows">
+                    <div class="drawer-row">Shipping: <span id="drawerSummaryShipping">$0.00</span></div>
+                    <div class="drawer-row">Tax: <span id="drawerSummaryTax">$0.00</span></div>
+                    <div class="drawer-row total">Total: <strong id="drawerSummaryTotal">$0.00</strong></div>
+                </div>
+                <div class="cart-actions">
+                    <a href="cart.html" class="btn">View Full Cart</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- overlay sits behind the drawer to capture outside clicks -->
+    <div id="cartOverlay" class="cart-overlay" aria-hidden="true"></div>
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Discover Your Natural Radiance</h1>
+                <p>Indulge in our curated collection of premium beauty essentials. Let your authentic beauty shine through with our natural and effective products.</p>
+                <a href="product-list.html" class="btn">Shop Collection</a>
+            </div>
+        </section>
+
+        <!-- Features Bar -->
+        <section class="features-bar">
+            <div class="features-content">
+                <div class="feature-item"><i class="fas fa-leaf"></i> Natural Ingredients</div>
+                <div class="feature-item"><i class="fas fa-heart"></i> Cruelty-Free</div>
+                <div class="feature-item"><i class="fas fa-truck-fast"></i> Free Shipping Over $50</div>
+                <div class="feature-item"><i class="fas fa-gift"></i> Luxury Samples</div>
+            </div>
+        </section>
+
+        <!-- Products Slider -->
+        <section id="products" class="container">
+            <div class="section-header">
+                <h2>Bestselling Products</h2>
+                
+            </div>
+            <div class="products-wrapper">
+                <button class="scroll-btn scroll-left" aria-label="Scroll left">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <div class="products-slider">
+                    <!-- Skincare -->
+                    <div class="product-card" id="skincare">
+                        <div class="product-image-container">
+                            <div class="spinner"></div>
+                            <img src="https://images.unsplash.com/photo-1570554886111-e80b8c7d5b8d?q=80&w=1887&auto=format&fit=crop" alt="Vitamin C Serum">
+                        </div>
+                        <div class="product-card-content">
+                            <h3>Radiance Vitamin C Serum</h3>
+                            <p>Brightening & Anti-aging serum with 20% Vitamin C</p>
+                            <div class="product-price">$68.00</div>
+                            <a href="#" class="btn btn-secondary"><i class="fas fa-plus"></i> Add to Cart</a>
+                        </div>
+                    </div>
+                    <!-- Makeup -->
+                    <div class="product-card" id="makeup"
+                    >
+                        <div class="product-image-container">
+                            <div class="spinner"></div>
+                            <img src="https://images.unsplash.com/photo-1631214540553-ff044a3ff1d4?q=80&w=1889&auto=format&fit=crop" alt="Luxury Foundation">
+                        </div>
+                        <div class="product-card-content">
+                            <h3>Silk Finish Foundation</h3>
+                            <p>Weightless, natural coverage with hyaluronic acid</p>
+                            <div class="product-price">$45.00</div>
+                            <a href="#" class="btn btn-secondary"><i class="fas fa-plus"></i> Add to Cart</a>
+                        </div>
+                    </div>
+                    <!-- Fragrance -->
+                    <div class="product-card" id="fragrance"
+                    >
+                        <div class="product-image-container">
+                            <div class="spinner"></div>
+                            <img src="https://images.unsplash.com/photo-1592914610354-fd354ea45e48?q=80&w=1890&auto=format&fit=crop" alt="Luxury Perfume">
+                        </div>
+                        <div class="product-card-content">
+                            <h3>Rose Garden Eau de Parfum</h3>
+                            <p>Elegant blend of rose, jasmine, and amber</p>
+                            <div class="product-price">$120.00</div>
+                            <a href="#" class="btn btn-secondary"><i class="fas fa-plus"></i> Add to Cart</a>
+                        </div>
+                    </div>
+                    <!-- Facial Oil -->
+                    <div class="product-card">
+                        <div class="product-image-container">
+                            <div class="spinner"></div>
+                            <img src="https://images.unsplash.com/photo-1608248597279-f99d160bfcbc?q=80&w=1887&auto=format&fit=crop" alt="Facial Oil">
+                        </div>
+                        <div class="product-card-content">
+                            <h3>Golden Elixir Facial Oil</h3>
+                            <p>Luxurious blend of argan and jojoba oils</p>
+                            <div class="product-price">$82.00</div>
+                            <a href="#" class="btn btn-secondary"><i class="fas fa-plus"></i> Add to Cart</a>
+                        </div>
+                    </div>
+                    <!-- Face Mask -->
+                    <div class="product-card">
+                        <div class="product-image-container">
+                            <div class="spinner"></div>
+                            <img src="https://images.unsplash.com/photo-1596755389378-c31d21fd1273?q=80&w=1887&auto=format&fit=crop" alt="Clay Mask">
+                        </div>
+                        <div class="product-card-content">
+                            <h3>Purifying Clay Mask</h3>
+                            <p>Deep cleansing mask with kaolin clay</p>
+                            <div class="product-price">$38.00</div>
+                            <a href="#" class="btn btn-secondary"><i class="fas fa-plus"></i> Add to Cart</a>
+                        </div>
+                    </div>
+                    <!-- Lip Treatment -->
+                    <div class="product-card">
+                        <div class="product-image-container">
+                            <div class="spinner"></div>
+                            <img src="https://images.unsplash.com/photo-1586495777744-4413f21062fa?q=80&w=1887&auto=format&fit=crop" alt="Lip Treatment">
+                        </div>
+                        <div class="product-card-content">
+                            <h3>Nourishing Lip Treatment</h3>
+                            <p>Hydrating lip balm with shea butter</p>
+                            <div class="product-price">$24.00</div>
+                            <a href="#" class="btn btn-secondary"><i class="fas fa-plus"></i> Add to Cart</a>
+                        </div>
+                    </div>
+                    <!-- Eye Cream -->
+                    <div class="product-card">
+                        <div class="product-image-container">
+                            <div class="spinner"></div>
+                            <img src="https://images.unsplash.com/photo-1617897903246-719242758050?q=80&w=1887&auto=format&fit=crop" alt="Eye Cream">
+                        </div>
+                        <div class="product-card-content">
+                            <h3>Revitalizing Eye Cream</h3>
+                            <p>Brightening eye cream with caffeine</p>
+                            <div class="product-price">$56.00</div>
+                            <a href="#" class="btn btn-secondary"><i class="fas fa-plus"></i> Add to Cart</a>
+                        </div>
+                    </div>
+                    <!-- Hair Oil -->
+                    <div class="product-card">
+                        <div class="product-image-container">
+                            <div class="spinner"></div>
+                            <img src="https://images.unsplash.com/photo-1585232004423-244e0e6904e3?q=80&w=1887&auto=format&fit=crop" alt="Hair Oil">
+                        </div>
+                        <div class="product-card-content">
+                            <h3>Luxe Hair Oil</h3>
+                            <p>Nourishing oil blend for silky smooth hair</p>
+                            <div class="product-price">$42.00</div>
+                            <a href="#" class="btn btn-secondary"><i class="fas fa-plus"></i> Add to Cart</a>
+                        </div>
+                    </div>
+                    <!-- Body Lotion -->
+                    <div class="product-card">
+                        <div class="product-image-container">
+                            <div class="spinner"></div>
+                            <img src="https://images.unsplash.com/photo-1608248543803-ba4f8c70ae0b?q=80&w=1887&auto=format&fit=crop" alt="Body Lotion">
+                        </div>
+                        <div class="product-card-content">
+                            <h3>Hydrating Body Lotion</h3>
+                            <p>Rich moisturizer with coconut oil</p>
+                            <div class="product-price">$32.00</div>
+                            <a href="#" class="btn btn-secondary"><i class="fas fa-plus"></i> Add to Cart</a>
+                        </div>
+                    </div>
+                    <!-- Hand Cream -->
+                    <div class="product-card">
+                        <div class="product-image-container">
+                            <div class="spinner"></div>
+                            <img src="https://images.unsplash.com/photo-1608248544142-2a568721d2f6?q=80&w=1887&auto=format&fit=crop" alt="Hand Cream">
+                        </div>
+                        <div class="product-card-content">
+                            <h3>Luxury Hand Cream</h3>
+                            <p>Intensive hand treatment with almond oil</p>
+                            <div class="product-price">$28.00</div>
+                            <a href="#" class="btn btn-secondary"><i class="fas fa-plus"></i> Add to Cart</a>
+                        </div>
+                    </div>
+                </div>
+                <button class="scroll-btn scroll-right" aria-label="Scroll right">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+            <a href="product-list.html" class="btn btn-outline">Our Products</a>
+        </section>
+
+        <!-- Beauty Philosophy Section -->
+        <section class="innovation container">
+            <div class="innovation-content">
+                <h2>Beauty with Purpose</h2>
+                <p>At Bella Beauty, we believe in the power of natural ingredients and mindful beauty rituals. Our products are carefully formulated to enhance your natural beauty while being kind to your skin and the environment.</p>
+                <a href="#" class="btn">Discover Our Story</a>
+            </div>
+        </section>
+
+        <!-- Cart Page (MyDawa-style) -->
+        <div id="cartPageOverlay" class="cart-page-overlay" aria-hidden="true"></div>
+        <section id="cartPage" class="cart-page" aria-hidden="true">
+            <div class="cart-panel container" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
+                <button id="cartPageClose" class="cart-page-close" aria-label="Close cart">&times;</button>
+                <h2 id="cartTitle">Your Cart</h2>
+                <div class="cart-layout">
+                <div class="cart-items-column">
+                    <div id="cartPageItems" class="cart-page-items">
+                        <!-- items will be rendered here -->
+                    </div>
+                    <div class="cart-actions-row">
+                        <button id="continueShopping" class="btn">Continue Shopping</button>
+                        <button id="clearCartBtn" class="btn btn-secondary">Clear Cart</button>
+                    </div>
+                </div>
+                </div>
+            </div>
+            <div class="order-summary" id="orderSummary">
+                <h3>Order Summary</h3>
+                <div class="summary-row"><span>Subtotal</span><span id="summarySubtotal">$0.00</span></div>
+                <div class="summary-row coupon-row">
+                    <input id="couponInput" type="text" placeholder="Coupon code" aria-label="Coupon code">
+                    <button id="applyCoupon" class="btn btn-secondary">Apply</button>
+                </div>
+                <div class="summary-row shipping-row">
+                    <select id="shippingCountry" aria-label="Country">
+                        <option value="KE">Kenya</option>
+                        <option value="UG">Uganda</option>
+                        <option value="TZ">Tanzania</option>
+                        <option value="OTHER">Other</option>
+                    </select>
+                    <input id="shippingZip" type="text" placeholder="Postal / ZIP" aria-label="Postal code">
+                    <button id="estimateShipping" class="btn btn-secondary">Estimate</button>
+                </div>
+                <div class="summary-row"><span>Shipping</span><span id="summaryShipping">$0.00</span></div>
+                <div class="summary-row"><span>Tax</span><span id="summaryTax">$0.00</span></div>
+                <div class="summary-row total-row"><strong>Total</strong><strong id="summaryTotal">$0.00</strong></div>
+                <button id="proceedCheckout" class="btn">Proceed to Checkout</button>
+            </div>
+        </section>
+
+        <!-- Reviews Section -->
+        <section class="reviews container">
+            <h2>Beauty Stories</h2>
+            <div class="reviews-wrapper">
+                <button class="review-scroll-btn review-left" aria-label="Scroll reviews left">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <div class="review-cards">
+                    <div class="review-card">
+                        <blockquote>"The Vitamin C Serum has completely transformed my skin. My complexion is brighter and more radiant than ever!"</blockquote>
+                        <p class="reviewer-name">— Emma S.</p>
+                        <div class="review-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <div class="review-card">
+                        <blockquote>"The Rose Garden perfume is divine! I receive compliments every time I wear it. Simply luxurious!"</blockquote>
+                        <p class="reviewer-name">— Sophie M.</p>
+                        <div class="review-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <div class="review-card">
+                        <blockquote>"I've struggled with dry hands for years — the Luxury Hand Cream fixed that in days. The texture and scent are perfect."</blockquote>
+                        <p class="reviewer-name">— Olivia R.</p>
+                        <div class="review-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                    <div class="review-card">
+                        <blockquote>"Silk Finish Foundation blends flawlessly and lasts all day — no touch-ups required. My go-to product now."</blockquote>
+                        <p class="reviewer-name">— Maya L.</p>
+                        <div class="review-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                    <div class="review-card">
+                        <blockquote>"The Golden Elixir Facial Oil is a nightly ritual I can't live without. My skin feels plumper and more nourished."</blockquote>
+                        <p class="reviewer-name">— Harper T.</p>
+                        <div class="review-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                    </div>
+                    <div class="review-card">
+                        <blockquote>"Quick shipping and beautiful packaging — the samples were a delightful surprise. Customer service was very helpful."</blockquote>
+                        <p class="reviewer-name">— Lucas G.</p>
+                        <div class="review-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i>
+                        </div>
+                    </div>
+                </div>
+                <button class="review-scroll-btn review-right" aria-label="Scroll reviews right">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+        </section>
+
+        <!-- Newsletter Signup -->
+        <section class="newsletter container">
+            <h2>Join Our Beauty Community</h2>
+            <p>Subscribe to receive beauty tips, exclusive offers, and early access to new product launches. Enjoy <strong>15% off</strong> your first purchase!</p>
+            <form class="newsletter-form">
+                <input type="email" placeholder="Enter your email address" required>
+                <button type="submit" class="btn">Subscribe</button>
+            </form>
+        </section>
+    </main>
+
+    <footer class="main-footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Bella Beauty</h4>
+                <p>Your journey to natural radiance.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Shop</h4>
+                <ul>
+                        <li><a href="product-list.html?category=skincare">Skincare</a></li>
+                        <li><a href="makeup.html">Makeup</a></li>
+                        <li><a href="fragrance.html">Fragrance</a></li>
+                        <li><a href="haircare.html">Haircare</a></li>
+                    </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Customer Care</h4>
+                <ul>
+                    <li><a href="contactus.html">Contact Us</a></li>
+                    <li><a href="blog.html">Our Blog</a></li>
+                    <li><a href="#">Beauty Guide</a></li>
+                    <li><a href="#">Shipping Info</a></li>
+                    <li><a href="#">Returns</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Follow Us</h4>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-pinterest"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-tiktok"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2025 Bella Beauty. All Rights Reserved.
+        </div>
+    </footer>
+
+    <button id="backToTopBtn" class="back-to-top" title="Go to top"><i class="fas fa-arrow-up"></i></button>
+
+    <script src="products.js" defer></script>
+</body>
+</html>
